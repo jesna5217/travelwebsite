@@ -19,7 +19,7 @@ function Review() {
         autoplayHoverPause: true,
         responsive: {
           0: {
-            items: 2.5,
+            items: 2,
             nav: true,
             loop:false,
             dots:false
@@ -45,7 +45,7 @@ function Review() {
    
 <div className='owl4 mt-5' >
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
-   <OwlCarousel className='owl-theme' loop nav {...options}>
+   <OwlCarousel className='owl-theme owl' loop nav {...options}>
    <div className='item '>
     <img src={caro1} alt="" />
    <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>

@@ -40,8 +40,8 @@ outline:none!important;
     }
   
         .book{
-        
-        font-size: 12px;  
+       margin-left: 20px; 
+        font-size: 14px;  
     } 
     .star_rating{
         font-size: 12px!important;

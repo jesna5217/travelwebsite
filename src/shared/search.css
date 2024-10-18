@@ -47,12 +47,13 @@ border-radius: 5px;
 position: relative;
     }
     .search_bars input::placeholder{
-        font-size: 10px;
+        font-size: 14px;
     
     }
     .search_bars input{
-        width: 200%;
-        background-color: transparent;
+        width: 180%;
+        background-color:transparent;
+        height: 30px;
     }
    .search_bars form{
     display: block!important;
@@ -61,7 +62,8 @@ position: relative;
     display: flex!important;
    }
    .search_bars h6{
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 600;
    }
    .search_bars i{
     font-size: 13px;
@@ -69,7 +71,7 @@ position: relative;
    .search_btn{
     border-radius: 5px;
     padding: 3px 35px;position: absolute;
-left: 40%;
+left: 70%;
 bottom: 10px;
    }
    .borders{
