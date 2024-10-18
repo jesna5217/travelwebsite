@@ -104,7 +104,7 @@ function Homepage() {
 <section>
 <h1 className='heading'>Why choose Us ?</h1>
   <div className="row">
-<div className=' mt-5 col-md-4'>
+<div className=' mt-5 col-md-4 us'>
   <img src={travel} alt=""  width="500px"/>
 </div>
 <div className="col-md-8 mt-5 choose">

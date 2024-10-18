@@ -39,7 +39,7 @@ function Header() {
 
 <header class="fixed top-0 left-0 z-50 h-[60px] w-full bg-white shadow-[10px_2px_10px_grey] d-flex justify-between items-center p-4">
 <Link to={'/'}>
-   <div className='logo font-bold text-xl' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif"}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></div>
+   <div className='logos font-bold text-xl' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif"}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></div>
  </Link>  
   
     <nav className='nav_bar'>
