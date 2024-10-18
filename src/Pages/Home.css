@@ -1,0 +1,227 @@
+.contain{
+    padding: 100px;
+
+}
+.box{
+   
+    margin-right: 20px;
+    border-radius: 10px;
+    width: 230px;
+}
+.box img{
+    border-radius: 10px;
+    transition: 500ms;
+    border: 1px solid gold;
+}
+.box img:hover{
+    transform: scale(1.06);
+}
+.two{
+    margin-top: 30px;
+}
+.three{
+    margin-top: 60px;
+}
+.des{
+    font-family: "Qwitcher Grypen", cursive;
+font-size: 50px;
+color: rgb(220, 190, 30);
+font-weight: 700;
+
+}
+.para{
+    margin-top:30px ;
+    font-family: "Lora", serif;
+
+}
+.provide{
+    height: 150px;
+    width: 250px;
+
+
+margin-right: 40px;
+border-right: 1px solid  rgb(220, 190, 30) ;
+border-bottom: 1px solid  rgb(220, 190, 30) ;
+display: flex;
+text-align: center;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+.tion{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    font-size: 80px!important;
+    font-family: "Qwitcher Grypen", cursive;
+    font-weight: 700;
+
+}
+.provide h1{
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(220, 190, 30) ;
+}
+.provide p{
+    font-size: 12px;
+    font-weight: 600;
+}
+.headset{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: rgb(220, 190, 30);
+    text-align: center;
+}
+.heading{
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 50px;
+    font-family:sans-serif;
+}
+.choose div{
+   
+    margin-bottom: 20px;
+}
+.subscribe{
+    margin-top: 70px;
+    height: 200px;
+    width: 100%;
+    background-color:  antiquewhite;
+}
+.subscribe input{
+    width: 300px;
+    height: 40px;
+    border: 1px solid  rgb(220, 190, 30);
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+.tour_data{
+    flex: 1;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+.booking{
+    position: sticky;
+    height: fit-content;
+}
+@media only screen and (max-width: 600px){
+    .contain{
+        padding: 60px 20px;
+    
+    }
+    .para{
+        font-size: 10px;
+    }
+    .des{
+        font-size: 35px!important;
+        text-align: center;
+    }
+    
+    .box{
+       
+        margin-right: 5px;
+        border-radius: 10px;
+        width: 230px;
+    }
+    .box img{
+        margin-top: 20px;
+        border-radius: 10px;
+        transition: 500ms;
+        border: 1px solid gold;
+    }
+    .box img:hover{
+        transform: scale(1.06);
+    }
+    .two{
+        margin-top: 0px;
+    }
+    .three{
+        margin-top: 0px;
+    }
+    
+    .para{
+        margin-top:10px ;
+        font-family: "Lora", serif;
+    }
+    .services h3{
+ font-size: 25px!important;
+ 
+    }
+    .services p{
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700!important;
+    }
+    .provide{
+        height: 120px;
+        width: 200px;
+    margin-left: 20%;
+
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  
+    }
+    .provide h1{
+        margin-bottom: 20px;
+        font-size: 10px;
+        font-weight: 600;
+        color: rgb(220, 190, 30) ;
+    }
+    .provide p{
+        font-size: 10px;
+        font-weight: 600;
+    }
+  
+    .heading{
+        font-size: 15px;
+        margin-top: 0px;
+        
+    }
+    /* ====================== */
+    .about{
+        margin-top: -30px!important;
+       
+    }
+    .choose div{
+       font-size: 10px;
+        margin-bottom: 0px;
+    }
+    .subscribe{
+        margin-top: 20px;
+        height: 100px;
+       padding: 10px;
+    }
+    .subscribe p{
+        font-size: 12px;
+    }
+    .subscribe input{
+        width: 120px;
+        height: 20px;
+        border: 1px solid  rgb(220, 190, 30);
+        border-radius: 2px;
+        padding-left: 10px;
+    font-size: 10px;
+    }
+    .subs{
+        width: 60px;
+        font-size: 5px;
+        margin-top: 10px;
+        height: 20px;
+
+    }
+    .sticky img{
+        height: 200px;
+    }
+    .tion{
+        font-size: 40px!important;
+        text-align: center;
+        left: 0;
+    
+    }
+    
+}

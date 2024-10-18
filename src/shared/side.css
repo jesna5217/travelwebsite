@@ -1,0 +1,10 @@
+.sidebar{
+  
+    border-right: 1px solid lightgray;
+      padding-top:30px;
+    position: sticky;
+    
+    top: 0px; /* Adjust the distance from the top of the viewport */
+    max-height: calc(100vh ); /* Ensures the div does not extend beyond the viewport */
+    overflow-y: auto; 
+    }

@@ -1,0 +1,112 @@
+.person{
+    font-size: 14px;
+ font-weight: 400;
+}
+.booking{
+    border: 1px solid lightgray;
+    padding: 20px 30px;
+}
+.booking h1{
+
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.details_booking{
+    padding: 30px;
+    margin-top: 20px;
+    padding: 30px;
+    border: 1px solid lightgray;
+
+}
+.booking input{
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+.date{
+    width: 45%!important;
+    margin-right: 10px;
+}
+.booking input::placeholder{
+    font-size: 13px;
+}
+.booking input:focus{
+outline: none;
+}
+.booking_bottom h2{
+ font-size: 15px;
+ font-weight: 600;
+ margin-top: 20px;
+}
+.booking_bottom{
+    font-size: 14px;
+}
+.booking_bottom{
+    margin-top: 20px;
+}
+.check_out{
+    background-color:  rgb(220, 190, 30);
+    height: 30px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+}
+.booking_bottom div{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.booking {
+    position: sticky; /* Keeps the element fixed when scrolling */
+    top: 90px; /* Adjust the distance from the top of the viewport */
+    max-height: calc(100vh - 40px); /* Ensures the div does not extend beyond the viewport */
+    overflow-y: auto; /* Adds scroll if content exceeds the available space */
+}
+@media only screen and (max-width: 600px){
+   .container{
+    padding: 0px 10px;
+   }
+   .booking {
+    position: relative;
+top: 10px;
+margin-bottom: 20px;
+}
+.booking h1{
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+.details_booking{
+    padding: 0px;
+    margin-top: 5px;
+    padding: 20px;
+    
+}
+
+
+.booking input::placeholder{
+    font-size: 10px;
+}
+
+.booking_bottom h2{
+ font-size: 12px;
+ font-weight: 600;
+ margin-top: 5px;
+}
+.booking_bottom{
+    font-size: 12px;
+}
+.booking_bottom{
+    margin-top: 20px;
+}
+.check_out{
+    
+    height: 30px;
+    border-radius: 10px;
+    
+}
+}

@@ -1,0 +1,29 @@
+footer{
+    background-color: #eee;
+    height: 400px;
+    width: 100%;
+padding: 100px
+}
+.twitter{
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: rgb(0, 171, 240);
+    display:flex;
+justify-content: center;
+align-items: center;
+color: white;
+}
+@media only screen and (max-width: 600px){
+    footer{
+       padding: 10px;
+       height: 240px;
+    }
+    .dayout,.Help,.contact{
+        font-size: 10px;
+    }
+    .logo{
+        font-size: 12px!important;
+        margin-bottom: 10px!important;
+    }
+}

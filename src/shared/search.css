@@ -1,0 +1,78 @@
+.search_bars{
+   
+    margin-top: 100px;
+    height: 80px;
+
+   
+    padding:  20px;
+    border-radius: 50px;
+}
+.search_bars i{
+    color: rgba(109, 13, 13, 0.701);
+    font-size: 20px;
+}
+.search_bars input:focus{
+    outline: none;
+    border: none;
+}
+.borders{
+    border-right: 1px solid grey;
+}
+.search_bars input::placeholder{
+    font-size: 12px;
+
+}
+.month{
+    font-size: 12px;
+color: grey;
+}
+.number{
+    width: 100px;
+}
+.search_btn{
+    background-color:  rgba(109, 13, 13, 0.701);
+    padding: 5px;
+    border-radius: 35px;
+    
+}
+
+@media only screen and (max-width: 600px){
+    .search_bars{
+margin-top: 120px!important;
+
+border: 2px solid rgb(115, 37, 37) ;
+height: 220px;
+border-radius: 5px;
+
+position: relative;
+    }
+    .search_bars input::placeholder{
+        font-size: 10px;
+    
+    }
+    .search_bars input{
+        width: 150%;
+        background-color: transparent;
+    }
+   .search_bars form{
+    display: block!important;
+   }
+   .from_to{
+    display: flex!important;
+   }
+   .search_bars h6{
+    font-size: 12px;
+   }
+   .search_bars i{
+    font-size: 13px;
+   }
+   .search_btn{
+    border-radius: 5px;
+    padding: 3px 35px;position: absolute;
+left: 40%;
+bottom: 10px;
+   }
+   .borders{
+    border-right: none;
+}
+    }

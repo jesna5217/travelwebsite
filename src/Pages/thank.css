@@ -1,0 +1,43 @@
+.thank {
+    font-family: "Italianno", cursive;
+font-size: 60px;
+}
+.checkout p{
+    font-size: 25px;
+    font-weight: 500;
+}
+@media only screen and (max-width: 600px){
+  #invoiceContent{
+    padding: 20px 0px !important;
+   
+  }  
+  .thank{
+    font-size: 30px;
+  }
+  .invoice{
+    font-size: 16px!important;
+  }
+  .soon{
+    font-size: 10px;
+    
+  }
+  .checkout{
+    margin-top: 0px!important;
+  }
+ 
+ .checkoutBox p{
+    font-size: 14px;
+ }
+ .checkoutBox span{
+    font-size: 14px!important;
+ }
+ .download{
+    margin-bottom: 40px;
+ }
+ .checkout{
+    font-size: 16px!important;
+ }
+ .end p{
+    font-size: 14px!important;
+ }
+}

@@ -1,0 +1,26 @@
+.item div{
+    text-align: center;
+    position: absolute;
+    bottom: 2%;
+      z-index: 100;
+    color:white;
+    background: linear-gradient(rgba(.5,.5,.5,.5),rgba(.5,.5,.5,.5));
+}
+.item{
+    position: relative;
+}
+.heading{
+  margin-bottom: 30px;
+}
+@media only screen and (max-width: 600px)
+{.owl4{
+  margin-top: 20px!important;
+
+}
+.owl4 h1{
+  margin-bottom: 20px!important;
+  font-size:15px
+}
+.owl-theme p{
+  font-size: 10px;
+}}

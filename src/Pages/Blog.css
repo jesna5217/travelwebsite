@@ -1,0 +1,19 @@
+
+.blog{
+    padding: 30px 100px;
+}
+.images img{
+   
+    transition: 500ms;
+   
+    cursor: pointer;
+}
+.images img:hover{
+    transform: scale(1.06);
+}
+
+@media only screen and (max-width: 600px){
+    .blog{
+        padding: 40px;
+    }
+}

@@ -1,0 +1,29 @@
+.common{
+    height: 400px;
+    padding: 0px 200px;
+
+    
+}
+.caption_tour{
+    position: relative;
+}
+.caption_tour h1{
+    position: absolute;
+    bottom: 3%;
+    left: 35%;
+    font-family: "Londrina Outline", sans-serif;
+}
+@media only screen and (max-width: 600px){
+.common{
+    height: 100px;
+    padding: 60px 0 30px 0;
+    
+}
+.caption_tour h1{
+    font-size:40px!important;
+    bottom: 10px;
+}
+.caption_tour img{
+    height: 150px;
+}
+}
