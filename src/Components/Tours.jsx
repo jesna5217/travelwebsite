@@ -147,7 +147,7 @@ function Tours({location,numberOfDays,people}) {
         }
     ]
     const filteredData = tourData.filter(item => {
-        const isCityMatch = location === '' || item.title.toLowerCase().includes(location);
+        const isCityMatch = location === '' || item.title.toLowerCase().includes(location.toLowerCase());
         const isPeopleMatch = people === '' || item.maxGroupSize >= people;
         const isDaysMatch = numberOfDays === '' || item.days >= numberOfDays;
         console.log('Filtering:', isCityMatch, isPeopleMatch, isDaysMatch);
