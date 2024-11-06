@@ -8,6 +8,18 @@ import '@szhsin/react-menu/dist/transitions/zoom.css';
 function Header() {
   const location=useLocation()
   const [showHeader, setShowHeader] = useState(false);
+  const[isLogin,setIsLogin]=useState(false);
+  const [username,setUsername]=useState("")
+  useEffect(()=>{
+    if(sessionStorage.getItem("token")){
+      setIsLogin(true);
+      const details=JSON.parse(sessionStorage.getItem("loggedUser"));
+      if(details){
+        setUsername(details.username)
+      }
+    }
+  },[])
+ 
   useEffect(() => {
     const handleScroll = () => {
       if (location.pathname === '/') {
@@ -19,7 +31,7 @@ function Header() {
         }
       }
     };
-
+   
     // Always show the header by default on other pages
     if (location.pathname !== '/') {
       setShowHeader(true);
@@ -30,6 +42,14 @@ function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [location.pathname]);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token"); 
+    sessionStorage.removeItem("loggedUser")
+    setIsLogin(false);
+    setUsername("")
+  };
+
 
   return (
 <>
@@ -55,18 +75,32 @@ function Header() {
 
 <Menu menuButton={<button className='menu_bar'><i class="fa-solid fa-bars"></i></button>} transition>
       <MenuItem><Link to={'/'}><li className='textColor'>Home</li></Link></MenuItem>
-      <MenuItem><a href="#about"><li>About</li></a></MenuItem>
+   
       <MenuItem><Link to={'/tour'}><li>Tours</li></Link></MenuItem>
-  <MenuItem><a href="#review"><li>Reviews</li></a></MenuItem>
+
   <MenuItem><Link to={'/blog'}><li>Blogs</li></Link></MenuItem>
     </Menu>
 
 {/* --------------------------------------- */}
 
+
+<div className='user-name'>
+            {isLogin && username && <p style={{ color: "black" ,fontWeight:"600"}}>Welcome <span className='textColor fs-5 fw-bold'> {username}</span></p>}
+          </div>
+
+
+
     <div className='d-flex login'>
-   <Link to={'/login'}> <div style={{backgroundColor:'rgb(220, 190, 30)'}} className='log_out me-3'  >
-<button >Log in</button>
-     </div></Link>
+      {
+        isLogin?<> <Link to={'/login'}> <div style={{backgroundColor:'rgb(220, 190, 30)'}} className='log_out me-3' onClick={handleLogout}  >
+        <button >Log out</button>
+             </div></Link>
+ <Link to={'/account'}> <button className='mt-2'><i class="fa-regular fa-user"></i></button></Link>
+             </>:
+           <Link to={'/login'}> <div style={{backgroundColor:'rgb(220, 190, 30)'}} className='log_out me-3'  >
+           <button >Log in</button>
+                </div></Link>  
+      }
     
     </div>
     </header>

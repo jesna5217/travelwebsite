@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Card from 'react-bootstrap/Card';
-
-import { Link } from 'react-router-dom';
+import { BASE_URL } from '../services/baseurl';
+import { Link, useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import './tourCard.css'
+import { ToastContainer } from 'react-bootstrap';
 function TourCard({tour}) {
-  
+  const [token,setToken]=useState("")
+  useEffect(()=>{
+    if(sessionStorage.token){
+      setToken(sessionStorage.token)
+    }
+  })
+  const navigate=useNavigate()
+  const handleBooking=()=>{
+if(!token){
+  alert("Please Login");
+  navigate('/login')
+}
+else{
+navigate(`/booking/${tour.id}`)
+}
+  }
   return (
  <>
  
@@ -16,14 +32,14 @@ function TourCard({tour}) {
  <div className='mt-5 tour_card '>
 
 
- <Link to={`/booking/${tour.id}`}><Card  className='shadow card '>
-      <Card.Img variant="top" className='card_img' src={tour.photo} />
+<Card  className='shadow card '>
+      <Card.Img variant="top" className='card_img' src={`${BASE_URL}/uploads/${tour.tourImage}`} />
       <Card.Body>
        <div className='d-flex justify-between'>
        <h2 className='mb-3'><i className='fa-solid fa-location-dot' style={{color:"brown"}}></i> {tour.city}</h2>
         <div className='rating'>
         <Stack spacing={1}>
-      <Rating name="half-rating" className='star_rating' style={{fontSize:'18px'}} readOnly defaultValue={tour.avgRating} precision={0.5} />
+      <Rating name="half-rating" className='star_rating' style={{fontSize:'18px'}} readOnly defaultValue={4} precision={0.5} />
      
     </Stack>
         </div>
@@ -35,18 +51,17 @@ function TourCard({tour}) {
         </Card.Text>
         <div className='d-flex justify-around card_bottom'>
             <div className='fw-bold money'>₹ {tour.price}<span className='person'>/person</span></div>
-       <Link to={`/booking/${tour.id}`}> <button className='btn'><span  className='book'><u>Book now</u></span></button></Link>
+        <button className='bn' onClick={handleBooking}>Book Now</button>
         </div>
      
       </Card.Body>
     </Card>
 
-</Link>
+
 
 
     {/*  */}
  </div>
-
 
 
  

@@ -1,32 +1,51 @@
-.item div{
-    text-align: center;
-    position: absolute;
-    bottom: 2%;
-      z-index: 100;
-    color:white;
-    background: linear-gradient(rgba(.5,.5,.5,.5),rgba(.5,.5,.5,.5));
-}
+
 .item{
     position: relative;
+    height: 400px;
+    width: 100%;
+    border: 1px solid rgb(215, 205, 205);
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+}
+.review_data{
+  background:linear-gradient(rgba(.5,.5,.5,.5),rgba(.5,.5,.5,.5));
+width: 100%;
+  position: absolute;
+bottom: 0px;
+color: white;
+font-weight: 600;
+z-index: 1;
+}
+.see{
+  font-family: "Qwitcher Grypen", cursive;
+  font-size: 70px;
+  font-weight: 700;
+margin-bottom: -40px;
+}
+.item .pic{
+  height: 400px;
+  width: 100%;
 }
 .heading{
   margin-bottom: 30px;
 }
+.rating{
+  z-index: 2;
+  font-size: 15px!important;
+}
 @media only screen and (max-width: 600px)
-{.owl4{
-  margin-top: 20px!important;
+{
+.see{
+  font-size: 45px;
+}
+.review-para{
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
 
 }
-.owl4 h1{
-  margin-bottom: 20px!important;
-  font-size:15px
-}
-.owl img{
-    height: 280px;
-}
-.owl-theme p{
-  font-size: 11px;
-}
-#review{
-    font-size: 20px;
-}}

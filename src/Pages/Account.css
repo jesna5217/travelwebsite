@@ -1,0 +1,42 @@
+.account{
+   padding: 100px 0px;
+    height:auto;
+    width: 60%;
+    border: 1px solid lightgray;
+}
+.account h2{
+    font-family: sans-serif;
+    font-weight: 700;
+}
+.account p{
+    font-size: 14px;
+    font-weight: 600;
+    color: grey;
+}
+
+.profile{
+    height: 200px;
+}
+@media only screen and (max-width: 600px){
+.account{
+    padding: 70px 0px;
+    width: 80%;
+}
+.account img{
+    height: 100px;
+    width: 100px;
+}
+.account button{
+    margin-top: 20px;
+    font-size: 10px;
+}
+.order-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order-head h2{
+    font-size: 15px!important;
+
+}
+}

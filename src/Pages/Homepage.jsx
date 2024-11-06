@@ -13,8 +13,9 @@ import Review from '../shared/Review'
 import Subscription from '../shared/Subscription'
 import bg from '../assets/travelbg.avif'
 
+
+
 function Homepage() {
- 
 
   return (
     <>
@@ -98,7 +99,7 @@ function Homepage() {
 
 <section>
 
-  <Review/>
+  <Review  />
 </section>
 
 <section>

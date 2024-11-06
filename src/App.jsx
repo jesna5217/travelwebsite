@@ -14,6 +14,10 @@ import ThankYou from './Pages/ThankYou'
 import Users from './shared/Users'
 import Bookings from './shared/Bookings'
 import TourData from './Pages/TourData'
+import { ToastContainer} from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+import UserAccount from "./Pages/UserAccount"
+import ReviewInput from './shared/ReviewInput'
 
 function App() {
   const location = useLocation();
@@ -32,15 +36,18 @@ function App() {
         <Route path='/booking/:id' element={<BookingPage />} />
         <Route path='/blog' element={<Blog />} />
         <Route path='/panel' element={<AdminPanel />} />
+        {/* <Route path='/dashboard' element={<Admin/>}/> */}
         <Route path='/thankyou' element={<ThankYou />} />
         <Route path='/tour' element={<TourPage />} />
         <Route path='/users' element={<Users/>} />
        <Route path='/order' element={<Bookings/>}/>
         <Route path='/details' element={<TourData/>}/>
-    
+    <Route path='/account' element={<UserAccount/>}/>
+    <Route path='/review' element={<ReviewInput/>}/>
       </Routes>
     
       {!shouldHideHeaderFooter && <Footer />}
+      <ToastContainer/>
     </>
   
  );

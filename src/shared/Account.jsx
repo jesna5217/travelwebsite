@@ -1,38 +1,71 @@
 import React from 'react'
-import avatar from "../assets/admin.jpeg"
-import { ListGroup, ListGroupItem } from 'react-bootstrap'
-function Account() {
+
+import './style.css'
+
+
+
+
+function Account({users,bookings,price}) {
+  const userNo=users.length;
+
+  const bookNo=bookings.length;
+
+  
+ 
+ 
+
+  
   return (
    <>
       <div className='user_number d-flex justify-center items-center '>
     <div className='logo font-bold text-5xl' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif"}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></div>
 
     </div>
-    <div className='d-flex p-5 gap-5'>
-      <div className="account d-flex justify-center items-center flex-column p-3" style={{border:"1px solid white"}}>
-    <div><img src={avatar} alt="" className='h-[170px] mb-3'  /></div>
-    <div>
-      <ListGroup >
-        <ListGroupItem style={{border:"none"}} className='list_items textColor bg-dark'>John Doe</ListGroupItem>
-        <ListGroupItem style={{border:"none"}} className='list_items bg-dark text-light'>email : dayOut@gmail.com</ListGroupItem>
-        <ListGroupItem style={{border:"none"}} className='list_items  bg-dark text-light'>Phone number : 9895000000</ListGroupItem>
-        <ListGroupItem style={{border:"none"}} className='list_items  bg-dark text-light'>Place : India</ListGroupItem>
-        <ListGroupItem style={{border:"none"}} className='list_items  bg-dark text-light'><button className='btn btn-warning '>Change Password</button></ListGroupItem>
+   
+    {/* <div className="row">
+      <div className="col-md-1"></div>
+    <div className="col-md-2 users ">
 
-      </ListGroup>
+      <div className='text-center'><h1>USERS</h1>
+      <p>{userNo}</p></div>
     </div>
-      </div>
-      <div className="details_total p-5">
-      <div className="quick-stats fs-4">
-        <h1 className='textColor text-center fw-bold mb-3 font'>DETAILS</h1>
-  <div className='text-light'>Total Users: 500</div>
-  <div className='text-light '>Total Bookings: 1500</div>
-  <div className='text-light '>Total Revenue: ₹ 50,000</div>
-  <div className='text-light '>Total Tours: 20</div>
+    <div className="col-md-2 users">
+    <div className='text-center'><h1>BOOKINGS</h1>
+    <p>{bookNo}</p></div>
+    </div>
+    <div className="col-md-2 users">
+    <div className='text-center'><h1>REVENUE</h1>
+    <p>{price}</p></div>
+    </div>
+    <div className="col-md-4">
+      
+    </div>
+    </div> */}
+<div className="row">
+<div className="col-md-1"></div>
+<div className="col-md-3">
+  <div className="users">
+  <div className='text-center'><h1>USERS</h1>
+  <p>{userNo}</p></div>
+  </div>
+</div>
+<div className="col-md-3">
+  <div className="users">
+  <div className='text-center'><h1>BOOKINGS</h1>
+  <p>{bookNo}</p></div>
+  </div>
+</div>
+<div className="col-md-3">
+  <div className="users">
+  <div className='text-center'><h1>TOTAL REVENUE</h1>
+  <p>{price}</p></div>
+  </div>
+</div>
 </div>
 
-      </div>
-    </div></>
+   
+  
+      </>
   )
 }
 

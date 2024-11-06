@@ -1,6 +1,6 @@
 .common{
     height: 400px;
-    padding: 0px 200px;
+    padding: 100px 200px;
 
     
 }
@@ -16,7 +16,7 @@
 @media only screen and (max-width: 600px){
 .common{
     height: 100px;
-    padding: 60px 0 30px 0;
+    padding: 60px 30px ;
     
 }
 .caption_tour h1{

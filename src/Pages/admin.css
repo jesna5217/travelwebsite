@@ -1,4 +1,31 @@
-.container{
+.dashboard{
+    display: flex;
+    gap: 20px;
+
+}
+.body{
+    background-color: aliceblue;
+    padding: 20px;
+}
+.dashboard-content{
+    background-color: #fff;
+    flex: 1;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+
+    justify-content: space-between;
+}
+.dashbar{
+    display: none;
+}
+@media only screen and (max-width: 600px){
+  .dashbar{
+   display: block;
+  }  
+}
+
+/* .container{
     padding: 100px;
    
    }
@@ -48,4 +75,4 @@
        width: 60%;
        border: 1px solid lightgray;
    }
-    
+     */

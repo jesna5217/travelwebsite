@@ -1,6 +1,9 @@
 .name{
     border: 1px solid rgb(220, 190, 30); ;
 }
+.tour_data{
+    overflow-y: hidden;
+}
 .tour_info h2{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 25px;

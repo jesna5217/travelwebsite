@@ -1,71 +1,65 @@
 import React from 'react'
 import { ListGroup, ListGroupItem } from 'react-bootstrap'
-import avatar from "../assets/admin.jpeg"
-import { Link } from 'react-router-dom'
+import day from "../assets/day.jpeg"
+
+import { Link, useNavigate } from 'react-router-dom'
 import './side.css'
 function Sidebar() {
+  const navigate=useNavigate()
+  const handleAdminLogOut=()=>{
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("Admin")
+navigate('/')
+  }
   return (
 <>
 
-  <div className='logo font-bold text-xl text-center mb-3' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif",color:'white'}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></div>
- 
- <div className='admin d-flex '> 
-   <div>
-   <img src={avatar} alt="" className='h-[50px]' />
-   </div>
-   <div>
-   <h1 className='textColor fs-5 fw-bold font '>Welcome John</h1>
-   <p></p>
-   </div>
- </div>
- <div className='ps-4 text-light ms-5'><p>dayOut@gmail.com</p></div>
+
+
+<div className="menu">
+<div className='logo font-bold text-xl  mb-3' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif"}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></div>
   
-<ListGroup className=' group_list ' >
-<Link to={'/panel'}><ListGroupItem className='list' style={{backgroundColor:"lightyellow"}}>
+  <div className="menu-list">
+  <Link to={'/panel'} ><div className="items" style={{ backgroundColor: "#23374d",color:"white"}}>
+  <p >
   <i className="fa-solid fa-chart-line" ></i> Dashboard
-</ListGroupItem></Link>
-<Link to={'/users'}><ListGroupItem className='list bg-dark text-light'>
-  <i className="fa-regular fa-user"></i> Users
-</ListGroupItem></Link>
-<Link to={'/details'}><ListGroupItem className='list bg-dark text-light'>
+</p></div></Link>
+
+<Link to={'/details'}><div className='items'>
+<p >
   <i className="fa-solid fa-suitcase"></i> Tour Details
-</ListGroupItem></Link>
+</p>
+  </div></Link>
 <Link to={'/order'}>
-<ListGroupItem className='list bg-dark text-light'>
+<div className="items">
+<p >
   <i className="fa-solid fa-calendar-check"></i> Bookings
-</ListGroupItem>
+</p>
+</div>
 </Link>
 <Link to={'/details'}>
-<ListGroupItem className='list bg-dark text-light'>
+<div className="items">
+<p>
   <i className="fa-solid fa-map-signs"></i> Update Trips
-</ListGroupItem></Link>
-<ListGroupItem className='list bg-dark text-light'>
-  <i className="fa-regular fa-star"></i> Reviews
-</ListGroupItem>
-
-<ListGroupItem className='list bg-dark text-light'>
-  <i className="fa-solid fa-list-check"></i> To do list
-</ListGroupItem>
+</p></div></Link>
 <Link to={'/details'}>
-<ListGroupItem className='list bg-dark text-light'>
+<div className="items">
+<p >
   <i className="fa-solid fa-plus"></i> Add Tours
-</ListGroupItem>
+</p>
+</div>
 </Link>
-<Link to={'/details'}>
-<ListGroupItem className='list bg-dark text-light'>
-  <i className="fa-solid fa-edit"></i> Edit Tours
-</ListGroupItem></Link>
-<Link to={'/'}>
-<ListGroupItem className='list bg-dark text-light'>
-  <i className="fa-solid fa-home"></i> Home
-</ListGroupItem></Link>
-<Link to={'/admin'}>
 
-<ListGroupItem className='list h-[80px] bg-dark text-light'>
+
+
+
+<div className="items">
+<p lassName='list h-[80px] bg-dark text-light' onClick={handleAdminLogOut}>
   <i className="fa-solid fa-sign-out-alt"></i> Log Out
-</ListGroupItem>
-</Link>
-</ListGroup>
+</p>
+</div>
+  </div>
+</div>
 
  </>
   )

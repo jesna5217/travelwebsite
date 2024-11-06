@@ -1,10 +1,49 @@
 .sidebar{
-  
+
+
     border-right: 1px solid lightgray;
       padding-top:30px;
     position: sticky;
+    height: 100vh;
+    top: 0px; 
+     max-height: calc(100vh ); /* Ensures the div does not extend beyond the viewport */
+     overflow-y: auto; 
+    }
     
-    top: 0px; /* Adjust the distance from the top of the viewport */
-    max-height: calc(100vh ); /* Ensures the div does not extend beyond the viewport */
-    overflow-y: auto; 
+
+
+    .menu{
+      display: flex;
+      flex-direction: column;
+      gap: 2.3rem;
+      height: 94vh;
+    
+    }
+    .menu-list i{
+      font-size: 1.4rem;
+    }
+    .menu-list{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .menu-list .items{
+      display: flex;
+      align-items: center;
+     gap: 20px;
+     font-size: 1.1rem;
+     font-weight: 600;
+     padding: 10px;
+     border-radius: 10px;
+     transition: 0.3s ease-in-out;
+     color: #23374d;      
+    }
+    .menu-list .items:hover{
+      background-color: #23374d;
+      color: white;
+    }
+    @media only screen and (max-width: 600px){
+      .menu{
+     visibility: hidden;
+      }
     }

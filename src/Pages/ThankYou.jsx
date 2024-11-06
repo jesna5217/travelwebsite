@@ -1,12 +1,17 @@
-import React from 'react'
-import { Container,Row,Col } from 'react-bootstrap'
+import React, { useContext } from 'react'
+import { Container,Row,Col, ListGroup, ListGroupItem } from 'react-bootstrap'
 import './thank.css'
 import { Link } from 'react-router-dom'
 import jsPDF from 'jspdf'; // Import jsPDF
 import html2canvas from 'html2canvas'; // Import html2canvas
+import { bookingResponseContext } from '../context/ContextShare';
 
 function ThankYou() {
-    const downloadInvoice = () => {
+
+  const {bookingResponse}=useContext(bookingResponseContext)
+  const options={day:"numeric",month:"numeric",year:"numeric"}
+ 
+      const downloadInvoice = () => {
        
         const input = document.getElementById('invoiceContent');
         html2canvas(input).then((canvas) => {
@@ -21,13 +26,11 @@ function ThankYou() {
       };
   return (
    <>
-   <Container className=''>
-    <Row>
-        <Col lg="12">
-        <div id='invoiceContent' className='p-5'>
-  <div className='d-flex justify-center items-center p-5 flex-column'>
+   <Container className='thanks'>
+<Row>
+<div className='d-flex justify-center items-center p-5 flex-column'>
     <p className='thank textColor  fw-bold'>Thank You!</p>
-    <p className='fs-4 invoice'>Dear Jesna Jose,</p>
+    <p className='fs-4 invoice'>Dear {bookingResponse.fullName},</p>
     <p>
       <span style={{ fontFamily: "Italianno, cursive" }} className='fs-5'>from </span>
       <span className='logo font-bold text-xl' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif" }}>
@@ -39,16 +42,50 @@ function ThankYou() {
     <p className='thank textColor '>Happy Holidays!</p>
   </div>
 
-  <h1 className=' text-center mt-5 fs-2 fw-bold checkout font'>CHECKOUT DETAILS</h1>
+</Row>
 
-  <div className='d-flex flex-column m-5 border p-4 rounded checkoutBox' style={{ backgroundColor: '#f8f9fa' }}>
-    <p><strong className='textColor'>Name:</strong> <span className='fs-5'>Jesna Jose</span></p>
-    <p><strong className='textColor'>Phone No.:</strong> <span className='fs-5'>9804672901</span></p>
-    <p><strong className='textColor'>Tour Package:</strong> <span className='fs-5'>Munnar 3D 2N</span></p>
-    <p><strong className='textColor'>Number of Guests:</strong> <span className='fs-5'>10</span></p>
-    <p><strong className='textColor'>GST and Service Charges:</strong> <span className='fs-5'>₹3,710.13</span></p>
-    <p><strong className='textColor'>Total Amount Paid:</strong> <span className='fs-5'>₹33,710.13</span></p>
+    <Row>
+        <Col lg="12">
+        <div id='invoiceContent' className='p-5'>
+  
+<div className='head'>  <h1 className=' text-center fs-2 fw-bold checkout font'>INVOICE</h1></div>
+<div className="row p-3 invoice">
+  <div className="col-md-3">
+    <h2 className='mt-2 fw-bold'>dayOut </h2>
+    <p>dayOut@gmail.com</p>
+    <p>MG road</p>
+    <p>Kerala, India</p>
+    <p>Phone no. : 9895000000</p>
   </div>
+  <div className="col-md-6">
+</div>
+<div className="col-md-3">
+  <p><span className='fw-bold'>Date : </span> {new Date().toLocaleDateString("en-US",options)}</p>
+  <p><span className='fw-bold'>#Invoice : </span>12121</p>
+</div>
+ </div>
+
+ <div className='head'>  <h1 className=' text-center  fs-3 fw-bold checkout font'>BOOKING DETAILS</h1></div>
+<div className='row mt-3 invoice'>
+  <div className="col-md-5">
+    <h3 className='fw-bold'>Booked by</h3>
+    <p>{bookingResponse.fullName}</p>
+    <p>{bookingResponse.userEmail}</p>
+    <p>{bookingResponse.phone}</p>
+  </div>
+  <div className="col-md-2"></div>
+  <div className="col-md-5">
+  <ListGroup>
+    <ListGroupItem>Customer Name : {bookingResponse.fullName}</ListGroupItem>
+    <ListGroupItem>Package Name : {bookingResponse.title}</ListGroupItem>
+  <ListGroupItem>Guest Number : {bookingResponse.guestNo}</ListGroupItem>
+  <ListGroupItem>Amount paid : ₹ {bookingResponse.price}</ListGroupItem>
+  <ListGroupItem>Date : {bookingResponse.bookAt}</ListGroupItem>
+  </ListGroup>
+
+  </div>
+</div>
+
 
   <div className='text-center mt-4 end'>
     <p className='textColor fs-6'>We hope you have an amazing experience!</p>

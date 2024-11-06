@@ -1,26 +1,77 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './bookingPackage.css'
 import { FormGroup,Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { bookingDataApi } from '../../services/allApi';
+import { bookingResponseContext } from '../../context/ContextShare';
 function BookingPackage({tour}) {
-    const {price,reviews,avgRating}=tour;
+    const {price,title}=tour
+   
+    
+   const token=sessionStorage.getItem("token");
     const[credentials,setCredentials]=useState({
-        usedId:"1",
-        userEmail:'example@gmail.com',
+        userId:"",
+        userEmail:"",
         fullName:'',
+        tourName:'',
         phone:'',
         guestNo:"",
-        bookAt:''
+        bookAt:'',
+        price:''
     })
+    const {setBookingResponse}=useContext(bookingResponseContext)
     const navigate=useNavigate()
     const handleCredentials=(e)=>{
         const { name, value } = e.target;
         setCredentials({ ...credentials, [name]: value });
     }
-    const handleCheckOut=(e)=>{
+    const handleCheckOut=async(e)=>{
         e.preventDefault()
-        console.log (credentials);
+    if(!token){
+        alert("Please login!!!")
+    }    
+        try{
+            const reqHeader={
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
+              }
+   const loggedUser=JSON.parse(sessionStorage.getItem("loggedUser"))
+
+              const gstAndServiceCharge = 314.13;
+    
+              const bookingData = {
+                fullName: credentials.fullName,
+                phone: credentials.phone,
+                guestNo: credentials.guestNo,
+                bookAt: credentials.bookAt,
+                userId: loggedUser?._id,
+                userEmail: loggedUser?.email,
+                tourName: title,
+                price: (price * (credentials.guestNo || 1)) + gstAndServiceCharge
+              };
+                // console.log (bookingData);
+                setBookingResponse(bookingData)
+            const result=await bookingDataApi(bookingData,reqHeader)
+    if(result.status===200){
+        console.log(result.data);
+        
+      
+        
+        
+
+
         navigate("/thankyou")
+
+       
+        
+    }
+    
+        }
+        catch(err){
+            console.log(err);
+            
+        }
+       
     }
   return (
 <>
@@ -30,7 +81,9 @@ function BookingPackage({tour}) {
         <span>
         <div className='rating d-flex '>
        
-    <p className=' text-xs'><i className='fa-solid fa-star textColor'></i>{avgRating}({reviews.length})</p>
+    <p className=' text-xs'><i className='fa-solid fa-star textColor'></i>
+    {/* {avgRating}({reviews.length}) */}
+    </p>
         </div> 
             </span></div>
             

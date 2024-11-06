@@ -1,88 +1,83 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css'
 import './Review.css'
-import caro1 from "../assets/rev1.avif"
-import caro2 from "../assets/rev2.avif"
-import caro3 from "../assets/rev3.avif"
-import caro4 from "../assets/rev4.jpg"
+import Gallery from './Gallery';
+import { getAllReviewApi } from '../services/allApi';
+import Rating from '@mui/material/Rating';
+import { BASE_URL } from '../services/baseurl';
+import styled from '@emotion/styled';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+// Import Swiper styles
+import 'swiper/css';
+
+
+// import required modules
+import { Pagination ,Autoplay} from 'swiper/modules';
 function Review() {
- 
-    const options = {
-        loop: true,
-        margin: 10,
-        responsiveClass: true,
-        autoplay: true,              // Enable autoplay
-        autoplayTimeout: 2000,       // Time between transitions (in milliseconds)
-        autoplayHoverPause: true,
-        responsive: {
-          0: {
-            items: 2,
-            nav: true,
-            loop:false,
-            dots:false
-          },
-          600: {
-            items: 4,
-            nav: false,
-            loop:false,
-            dots:false
-          },
-          1000: {
-            items: 5,
-            nav: true,
-            loop: true,
-            dots:false
-          },
-        },
-      };
-   
+const [review,setReview]=useState([]);
+
+const getReview=async()=>{
+  const res=await getAllReviewApi();
+  if(res.status===200){
+    setReview(res.data);
+    console.log(review);
+    
+  }
+}
+useEffect(()=>{
+  getReview()
+},[])
+
+
   return (
     <>
-  
-   
-<div className='owl4 mt-5' >
+
+
+<div className="row">
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
-   <OwlCarousel className='owl-theme owl' loop nav {...options}>
-   <div className='item '>
-    <img src={caro1} alt="" />
-   <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>
-   </div>
-   <div className='item '>
-    <img src={caro2} alt="" />
-   <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>
+<div className="col-md-5 review-para" >
+    <p className='see textColor'>Lets see what our </p>
+    <p className='see textColor'> customers has to say </p>
+     <p className='see textColor'>about us ...</p>
+  </div>
+  <div className="col-md-7">
 
-   </div>
-   
-   <div className='item'>
-    <img src={caro3} alt="" />
-   <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>
+  <Swiper
+  pagination={{
+    dynamicBullets: true,
+  }}
+  autoplay={{
+    delay: 3000, // Delay between slides in ms (3000ms = 3s)
+    disableOnInteraction: false, // Keeps autoplay active after interaction
+  }}
+  modules={[Pagination, Autoplay]} // Include Autoplay module here
+  className="mySwiper"
+>
+  {review?.map((item, index) => (
+    <SwiperSlide key={index}>
+      <div className='item'>
+        <img className='pic' src={`${BASE_URL}/uploads/${item.image}`} alt="" />
+        <div className='review_data d-flex justify-center items-center flex-column'>
+          <div><p>"{item.reviewText}"</p></div>
+          <div>
+            <Rating className='rating' name="disabled" value={item.tourRating} readOnly />
+          </div>
+          <div className='d-flex'>-<h6>{item.userName}</h6></div>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+      
+      </Swiper>
 
-   </div>
-   <div className='item'>
-    <img src={caro4} alt="" />
-   <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>
+  </div>
+  
+</div>
 
-   </div>
-   <div className='item'>
-    <img src={caro1} alt="" />
-   <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>
-
-   </div>
-   <div className='item'>
-    <img src={caro2} alt="" />
-   <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>
-
-   </div>
-   <div className='item'>
-    <img src={caro3} alt="" />
-   <div> <p>The trip was amazing ! Thankyou DayOut ❤️</p></div>
-
-   </div>
-</OwlCarousel>
-</div></>
+</>
   )
 }
 

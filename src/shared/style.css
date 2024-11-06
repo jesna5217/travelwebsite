@@ -1,0 +1,19 @@
+.users{
+   background-color: lightyellow;
+   box-shadow: 10px 10px 10px rgb(34, 30, 30);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    margin-top: 50px;
+    font-size: 22px;
+    color: black;
+    font-weight: 700;
+    margin-right: 50px;
+    border-radius: 10px;
+}
+@media only screen and (max-width: 600px){
+    .users{
+        height: 100px;
+    }
+}

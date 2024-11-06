@@ -57,7 +57,7 @@ const handleSearch = (e) => {
     <Row >
         <div className="col-md-2"></div>
        <div className="col-md-8">
-       <Row className='d-flex justify-content-center'>
+       <Row className='d-flex justify-content-center '>
         <Col lg="12">
           <div className="search_bars shadow w-100 p-3">
             <form className='d-flex align-items-center justify-between gap-4'>
@@ -127,23 +127,12 @@ const handleSearch = (e) => {
        <div className="col-md-2"></div>
 
     </Row>
-    <Row>
+    <Row className='tour-row'>
         <Col>
         <Tours location={location} numberOfDays={numberOfDays} people={people}/>
         </Col>
         <Col lg="12">
-        <div className="pagination d-flex justify-center items-center mt-4 gap-3">
-            {
-                [...Array(pageCount).keys()].map(number=>(
-                    <span key={number} onClick={()=>setPage(number)} 
-                    className={page===number?"active_page":""}>
-                        {
-                            number+1
-                        }
-                    </span>
-                ))
-            }
-            </div></Col>
+      </Col>
     </Row>
    </Container>
    

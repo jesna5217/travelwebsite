@@ -1,0 +1,42 @@
+.table-tour{
+    width: 80%;
+
+    border: 1px solid grey;
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+.table-tour img{
+    height: 250px;
+}
+.table-tour h1{
+    font-size: 25px;
+    font-weight: 600;
+}
+.table-tour span{
+    font-weight: 600;
+    color: rgb(155, 100, 100);
+}
+
+@media only screen and (max-width: 600px){
+    .container{
+        visibility: visible;
+    }
+    .sidebar{
+        display: none;
+    }
+    .table-tour{
+      margin-left: 70px!important;
+    
+        padding: 10px;
+    }
+    .table-tour h1{
+        font-size: 20px;
+   
+    }
+    .table-tour p{
+        font-size: 14px;
+    }
+}

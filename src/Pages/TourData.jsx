@@ -1,169 +1,157 @@
-import React,{useState} from 'react'
+import React,{useContext, useEffect, useState} from 'react'
 import Sidebar from '../shared/Sidebar'
-
-import goa from "../assets/bg4.avif"
-import munnar from  "../assets/munnar.avif"
-import shimla from "../assets/shimla.jpeg"
-import rajasthan from "../assets/rajasthan.avif"
-import varnasi from "../assets/varnasi.avif"
-import agra from "../assets/agra.avif"
-import ladakh from "../assets/ladakh.avif"
-import mysore from "../assets/mysore.avif"
+import { BASE_URL } from '../services/baseurl';
+import Collapse from 'react-bootstrap/Collapse';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import man from "../assets/add.avif"
 import './tourData.css'
-import { Table } from 'react-bootstrap'
+
+import { addTourApi, deleteTourApi, getAllTour } from '../services/allApi'
+import EditTour from '../shared/EditTour';
+import { addTourResponseContext, editTourResponseContext } from '../context/ContextShare';
 function TourData() {
-  const tourData=[
-    {
-        id:1,
-        title:"Goa",
-        city:"Goa",
-        days:3,
-        price:3000,
-        maxGroupSize:10,
-        desc:'A popular tourist destination known for its beaches, hotels, restaurants, history, and culture. ',
-        reviews:[{
-            name:"Shon",
-            Ratio:4.6
-        }],
-        avgRating:4.5,
-        photo:goa,
-        featured:true
-    },
-    {
-        id:2,
-        title:"Munnar",
-        city:"Kerala",
-       days:4,
-        price:3000,
-        maxGroupSize:10,
-        desc:'A picturesque hill station in Kerala, renowned for its sprawling tea plantations, lush green landscapes, and cool, refreshing climate.',
-        reviews:[{
-            name:"Shon",
-            Ratio:4.6
-        }],
-        avgRating:4.5,
-        photo:munnar,
-        featured:true
-    },
-    {
-        id:3,
-        title:"Shimla",
-        city:"Himachal Pradesh",
-        days:5,
-        price:9000,
-        maxGroupSize:10,
-        desc:'eghjkmnbvd ertyuiolmnf',
-
-        reviews:[{
-            name:"Shon",
-            Ratio:4.6
-        }],
-        avgRating:4.8,
-        photo:shimla,
-        featured:true
-    },
-    {
-        id:4,
-        title:"Jaipur",
-        city:"Rajasthan",
-        days:6,
-        price:7000,
-        maxGroupSize:10,
-        desc:'The capital of Rajasthan, Jaipur is known as the Pink City and is a popular tourist attraction for its rich culture and heritage.',
-
-        reviews:[{
-            name:"Shon",
-            Ratio:4.6
-        }],
-        avgRating:4.5,
-        photo:rajasthan,
-        featured:true
-    },
-    {
-        id:5,
-        title:"Varnasi",
-        city:"Varnasi",
-        days:7,
-        price:10000,
-        maxGroupSize:10,
-        desc:'A prominent tourist destination in India, Varanasi is known for its temples, ghats, and the Buddhist site Sarnath',
-        reviews:[{
-            name:"Shon",
-            Ratio:4.6
-        }],
-        avgRating:4.5,
-        photo:varnasi,
-        featured:true
-    },
-    {
-        id:6,
-        title:"Agra",
-        city:"Uttar Pradesh",
-        days:8,
-        price:11000,
-        maxGroupSize:10,
-        desc:'A popular tourist destination known for its beaches, hotels, restaurants, history, and culture. ',
-        reviews:[{
-            name:"Shon",
-            Ratio:2.3
-        }],
-        avgRating:4,
-        photo:agra,
-        featured:true
-    },
-    {
-        id:7,
-        title:"Ladakh",
-        city:"Ladakh",
-        days:9,
-        price:15000,
-        maxGroupSize:10,
-        desc:'A dream destination for adventure enthusiasts, Ladakh is known for its alpine glacial lakes, high-altitude hiking trails, and some of the worlds highest passes.',
-        reviews:[{
-            name:"Shon",
-            Ratio:4
-        }],
-        avgRating:3,
-        photo:ladakh,
-        featured:true
-    }
-    ,
-    {
-        id:8,
-        title:"Mysore",
-        city:"Mysore",
-        days:10,
-        price:3000,
-        maxGroupSize:10,
-        desc:'Known as the Palace City of India, Mysore is home to the Mysore Palace, which was the most visited place in India as of 2006. ',
-        reviews:[{
-            name:"Shon",
-            Ratio:4
-        }],
-        avgRating:3,
-        photo:mysore,
-        featured:true
-    }
-]
 const [show, setShow] = useState(false);
-
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
+const {addTourResponse,setAddTourResponse}=useContext(addTourResponseContext);
+const {editTourResponse,setEditTourResponse}=useContext(editTourResponseContext);
+
+const [tourDetails,setTourDetails]=useState({
+  id:'',
+  title:"",
+  city:"",
+  days:"",
+  desc:"",
+  maxGroupSize:"",
+  price:"",
+  tourImage:""
+})
+const[preview,setPreview]=useState("")
+const [token,setToken]=useState("");
+const [tourData,setTourData]=useState([])
+const getAllTourItems=async()=>{
+  const result=await getAllTour();
+  console.log("result",result.data);
+  setTourData(result.data)
+}
+useEffect(()=>{
+  if(sessionStorage.getItem("token")){
+    setToken(sessionStorage.getItem("token"))
+  }
+getAllTourItems()
+},[editTourResponse])
+useEffect(()=>{
+console.log(tourDetails);
+if(tourDetails.tourImage){
+  setPreview(URL.createObjectURL(tourDetails.tourImage))
+}
+},[tourDetails.tourImage])
+
+
+const hanndleAddTour=async(e)=>{
+  e.preventDefault();
+  const {title,city,days,desc,tourImage,maxGroupSize,price,id}=tourDetails;
+  if(!title || !city || !days || !desc || !tourImage ||!maxGroupSize || !price ||!id){
+    alert("Please fill the form completely")
+  }
+  else{
+    //here we are uploading a file so it should be sent as form data
+    const reqBody=new FormData();
+    reqBody.append("id",id)
+    reqBody.append("title",title);
+    reqBody.append("city",city);
+ reqBody.append("days",days);
+ reqBody.append("desc",desc);
+ reqBody.append("maxGroupSize",maxGroupSize);
+ reqBody.append("price",price)
+ reqBody.append("tourImage",tourImage)
+  
+
+  //here content type is multipart form data so another req header needed
+  const reqHeader={
+    'Content-Type':'multipart/form-data',
+    'Authorization':`Bearer ${token}`
+  }
+  const result=await addTourApi(reqBody,reqHeader)
+if(result.status===200){
+  alert("Uploading Successfull")
+  setAddTourResponse(result.data);
+  setTourDetails({
+    id:'',
+    title:"",
+    city:"",
+    days:"",
+    desc:"",
+    maxGroupSize:"",
+    price:"",
+    tourImage:""
+  })
+  setPreview("");
+  handleClose();
+  getAllTourItems()
+}
+else if(result.status===409){
+  alert(`${title} already exists`)
+}
+else{
+  alert(`${title} uploading failed`);
+  setTourDetails({
+    id:'',
+    title:"",
+    city:"",
+    days:"",
+    desc:"",
+    maxGroupSize:"",
+    price:"",
+    tourImage:""
+  })
+}
+
+}
+}
+const handleClose1=()=>{
+  setTourDetails({
+    id:'',
+    title:"",
+    city:"",
+    days:"",
+    desc:"",
+    maxGroupSize:"",
+    price:"",
+    tourImage:""
+  })
+  setPreview("");
+  handleClose();
+
+}
+const handleDelete=async(tourId)=>{
+
+  const token=sessionStorage.getItem("token");
+  const reqHeader={
+    "Content-Type":"application/json",
+    "Authorization":`Bearer ${token}`
+  }
+  const result=await deleteTourApi(tourId,reqHeader);
+  console.log("delete",result);
+  if(result.status===200){
+    getAllTourItems()
+  }
+}
+
+const [open, setOpen] = useState(false);
 
   return (
     <>
-    <div className="container menu pe-0 bg-dark text-light">
+    <div className="container menu pe-0 ">
     <div className="row ">
-      <div className="col-md-2 sidebar shadow">
+      <div className="col-md-2 sidebar shadow " >
       <Sidebar/>
       </div>
       <div className="col-md-1"></div>
     
       <div className="col-md-8 border  d-flex justify-center items-center flex-column p-3 details_tour">
-  <h1 className='text-center fs-2 fw-bold textColor font text-light'>TOUR DETAILS</h1>
+  <h1 className='text-center fs-2 fw-bold  font '>TOUR DETAILS</h1>
 <div>
 
 
@@ -182,33 +170,61 @@ const handleShow = () => setShow(true);
        </div>
       </Modal.Header>
       <Modal.Body>
-          <div className="row">
-          <div className="col-md-6">
+          <div >
+          <div >
 
-          <label htmlFor="tourImg">
-                      <input type="file" style={{display:'none'}}  id='tourImg'   />
-             <img src={man} alt="" />
+  <div className='d-flex justify-center items-center mb-2'>
+  <label htmlFor="tourImg">
+                      <input type="file" style={{display:'none'}}  id='tourImg'   
+                      onChange={(e)=>setTourDetails({...tourDetails,tourImage:e.target.files[0]})} />
+             <img src={preview?preview:man} alt="" className='h-[200px]' />
                  
                   </label>
+  </div>
 
 
           </div>
-          <div className="col-md-6">
+      
+          <div>
               <form action="">
-                  <input type="text" className='form-control mb-3' placeholder='Title'/>
-                  <input type="text" className='form-control mb-3' placeholder='City'/>
-                  <input type="text" className='form-control mb-3' placeholder='Number of days'/>
-                  <input type="text" className='form-control mb-3' placeholder='Description'/>
+              <div className="row">
+                <div className="col-md-6">
+                <input type="text" className='form-control mb-3' placeholder='id'
+                   onChange={(e)=>setTourDetails({...tourDetails,id:parseInt(e.target.value)})} value={tourDetails.id}/>
+
+                  <input type="text" className='form-control mb-3' placeholder='Title'
+                   onChange={(e)=>setTourDetails({...tourDetails,title:e.target.value})} value={tourDetails.title}/>
+                  <input type="text" className='form-control mb-3' placeholder='City'
+                   onChange={(e)=>setTourDetails({...tourDetails,city:e.target.value})} value={tourDetails.city}/>
+                  
+                 
+                
+                </div>
+                <div className="col-md-6">
+
+                <input type="number" className='form-control mb-3' placeholder='Number of days'
+                   onChange={(e)=>setTourDetails({...tourDetails,days:parseInt(e.target.value)})} value={tourDetails.days}/>
+                    <input type="number" className='form-control mb-3' placeholder='Maximum number of people'
+                   onChange={(e)=>setTourDetails({...tourDetails,maxGroupSize:parseInt(e.target.value)})} value={tourDetails.maxGroupSize}/>
+                    <input type="number" className='form-control mb-3' placeholder='Price'
+                   onChange={(e)=>setTourDetails({...tourDetails,price:parseInt(e.target.value)})} value={tourDetails.price}/>
+
+
+                </div>
+              </div>
+                    <textarea name="" id="" rows={4} className='form-control mb-3' placeholder='Description'
+                   onChange={(e)=>setTourDetails({...tourDetails,desc:e.target.value})} value={tourDetails.desc}></textarea>
+                  
 
               </form>
           </div>
           </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
+        <Button variant="secondary" onClick={handleClose1}>
+          Cancel
         </Button>
-        <Button variant="warning" onClick={handleClose}>
+        <Button variant="warning" onClick={hanndleAddTour} type='submit' >
           Save Changes
         </Button>
       </Modal.Footer>
@@ -217,50 +233,38 @@ const handleShow = () => setShow(true);
 
 </div>
 
-  <Table className='table table-bordered w-100 mt-5 rounded p-2'>
-  <thead>
-    <th className='p-3'>  SL. NO</th>
-    <th className='p-3'>TITLE</th>
-    <th  className='p-3'>CITY</th>
-    <th  className='p-3'>NO. OFDAYS</th>
-    <th  className='p-3'>PRICE</th>
-    <th className='p-3'>IMAGE</th>
-    <th className='p-3'>DESCRIPTION</th>
 
-<th className='p-3'>DELETE</th>
-<th className='p-3' >EDIT</th>
-
-  </thead>
-  
-
-    {
-      tourData?.map(data=>(<> 
-<tbody>
-       <td  className='p-2'>{data.id}</td>
-        <td  className='p-2'>{data.title}</td>
-        
-        <td  className='p-2'>{data.city}</td>
-        <td  className='p-2'>{data.days}</td>
-        <td  className='p-2'>{data.price}</td>
-        <td  className='p-2'><img src={data.photo} alt="" /></td>
-        <td  className='p-2'>{data.desc}</td>
-       
-        <td  className='p-2'>  <button className='bg-red-600 text-black font-bold py-1 px-2 rounded hover:bg-red-700'>
+{
+  tourData.map((data)=>(<>
+    <div className="row table-tour">
+  <div className="col-md-4">
+    <img src={`${BASE_URL}/uploads/${data.tourImage}`} alt="" />
+  </div>
+  <div className="col-md-8">
+    <h1 className='text-center'> {data.title.toUpperCase()}</h1>
+    <p><span>City : </span>{data.city}</p>
+    <p><span>Days : </span>{data.days}</p>
+    <p><span>Guests : </span>{data.maxGroupSize}</p>
+    <p><span>Price : </span>{data.price}</p>
+    <p><span>Description : </span>{data.desc}</p>
+   <div className='mt-3 d-flex justify-between'>
+   <button className='btn btn-outline-danger '
+        onClick={()=>handleDelete(data._id)}>
         DELETE
-      </button></td>
-      <td  className='p-2 ' onClick={handleShow}><i className='fa-solid fa-edit ' style={{color:"green"}}></i></td>
-    
-      </tbody>
+      </button>
+     
+     <EditTour tour={data}/>
+   </div>
+   
+      
+  </div>
+</div>
+
+
 </>
+  ))
+}
 
-      ))
-    }
- 
-  
-
-
-  
- </Table>
   </div>
   <div className="col-md-1"></div>
 
