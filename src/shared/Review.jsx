@@ -7,16 +7,16 @@ import Gallery from './Gallery';
 import { getAllReviewApi } from '../services/allApi';
 import Rating from '@mui/material/Rating';
 import { BASE_URL } from '../services/baseurl';
-import styled from '@emotion/styled';
-import { Swiper, SwiperSlide } from 'swiper/react';
+//import styled from '@emotion/styled';
+//import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
 
 
 // import required modules
-import { Pagination ,Autoplay} from 'swiper/modules';
-import { div } from 'framer-motion/client';
+//import { Pagination ,Autoplay} from 'swiper/modules';
+//import { div } from 'framer-motion/client';
 function Review() {
 const [review,setReview]=useState([]);
 
@@ -24,7 +24,7 @@ const getReview=async()=>{
   const res=await getAllReviewApi();
   if(res.status===200){
     setReview(res.data);
-    console.log(review);
+    console.log("review",res.data);
     
   }
 }
