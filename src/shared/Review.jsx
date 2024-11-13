@@ -56,7 +56,7 @@ const options = {
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
 <OwlCarousel className="owl-theme" {...options}>
        {
-        review.map((item)=>(
+        review?.map((item)=>(
           <div>
             <img height='300px' className='pic' src={`${BASE_URL}/uploads/${item.image}`} alt="" />
             <div className='review_data d-flex justify-center items-center flex-column'>

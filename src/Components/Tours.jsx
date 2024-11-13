@@ -2,22 +2,24 @@ import React, { useContext, useEffect, useState } from 'react'
 import TourCard from '../shared/TourCard'
 import { Col, Row } from 'react-bootstrap'
 import { getAllTour } from '../services/allApi'
-import { addTourResponseContext, editTourResponseContext } from '../context/ContextShare'
+// import { addTourResponseContext, editTourResponseContext } from '../context/ContextShare'
 
 
 function Tours({location,numberOfDays,people}) {
   
-   const {addTourResponse,setAddTourResponse}=useContext(addTourResponseContext) 
-   const{editTourResponse,setEditTourResponse}=useContext(editTourResponseContext)
+  //  const {addTourResponse,setAddTourResponse}=useContext(addTourResponseContext) 
+  //  const{editTourResponse,setEditTourResponse}=useContext(editTourResponseContext)
     const [tourData,setTourData]=useState([])
 const getAllTourItems=async()=>{
     const res= await getAllTour();
+    console.log(res.data);
+    
     setTourData(res.data);
 
 }
 useEffect(()=>{
     getAllTourItems()
-},[addTourResponse,editTourResponse])
+},[])
     const filteredData = tourData.filter(item => {
         const isCityMatch = location === '' || item.title.toLowerCase().includes(location.toLowerCase());
         const isPeopleMatch = people === '' || item.maxGroupSize >= people;
