@@ -150,7 +150,7 @@ const [open, setOpen] = useState(false);
       </div>
       <div className="col-md-1"></div>
     
-      <div className="col-md-8 border  d-flex justify-center items-center flex-column p-3 details_tour">
+      <div className="col-md-8 border  d-flex justify-center items-center flex-column p-2 details_tour">
   <h1 className='text-center fs-2 fw-bold  font '>TOUR DETAILS</h1>
 <div>
 
@@ -189,7 +189,7 @@ const [open, setOpen] = useState(false);
               <form action="">
               <div className="row">
                 <div className="col-md-6">
-                <input type="text" className='form-control mb-3' placeholder='id'
+                <input type="text" className='form-control mb-3' placeholder='Sl. no'
                    onChange={(e)=>setTourDetails({...tourDetails,id:parseInt(e.target.value)})} value={tourDetails.id}/>
 
                   <input type="text" className='form-control mb-3' placeholder='Title'
@@ -237,11 +237,11 @@ const [open, setOpen] = useState(false);
 {
   tourData.map((data)=>(<>
     <div className="row table-tour">
-  <div className="col-md-4">
+  <div className="col-md-5">
     <img src={`${BASE_URL}/uploads/${data.tourImage}`} alt="" />
   </div>
-  <div className="col-md-8">
-    <h1 className='text-center'> {data.title.toUpperCase()}</h1>
+  <div className="col-md-7">
+    <h1 className='text-center'><span style={{fontSize:"20px"}}>{data.id}.</span> {data.title.toUpperCase()}</h1>
     <p><span>City : </span>{data.city}</p>
     <p><span>Days : </span>{data.days}</p>
     <p><span>Guests : </span>{data.maxGroupSize}</p>

@@ -7,10 +7,10 @@ import { BASE_URL } from '../services/baseurl';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import upload from "../assets/upload.avif"
-import avatar from "../assets/women.avif"
+import avatar from "../assets/user.avif"
 import BookingPackage from '../Components/Booking/BookingPackage';
 import Subscription from '../shared/Subscription';
-
+import Swal from 'sweetalert2'
 import { addReviewsApi, getAllTourById, getReviewApi } from '../services/allApi';
 
 function BookingPage() {
@@ -43,7 +43,7 @@ const {title,city,days,price,maxGroupSize,tourImage,desc,_id}=tourDetails;
 const options={day:"numeric",month:"long",year:"numeric"}
 
 const tourId=_id;
-console.log(_id);
+
 
 const userName=JSON.parse(sessionStorage.getItem("loggedUser")).username;
 
@@ -79,7 +79,7 @@ reqBody.append("tourRating",tourRating);
 reqBody.append("reviewText",reviewText);
 reqBody.append("image",image);
 reqBody.append("tourId",tourId) 
-
+reqBody.append("userProfile",userProfile)
 
 const reqHeader={
   'Content-Type':'multipart/form-data',
@@ -87,7 +87,20 @@ const reqHeader={
 }
 const result=await addReviewsApi(reqBody,reqHeader);
 if(result.status===200){
-  alert("Review uploaded");
+  Swal.fire({
+    title: 'Thank You!!',
+    text: 'Your review means so much for us !!',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    timer: 3000 
+  });
+  console.log(result.data);
+  
+  setReviews({
+    tourRating:"",
+  reviewText:"", 
+  image:""
+  })
  getReviewById(tourId)
 }
 else{
@@ -116,10 +129,19 @@ useEffect(()=>{
   getReviewById(tourId)
  }
 },[tourId])
+
+const handleCancel=()=>{
+   
+  setReviews({
+    tourRating:"",
+  reviewText:"", 
+  image:""
+  })
+}
 return (
 <>
 <section>
-  <Container>
+  <Container className='munnar'>
     <Row>
       <Col lg='8'>
       <div className="tour_data w-100">
@@ -146,7 +168,7 @@ return (
          
           </div>   
         <div className='d-flex justify-between items-baseline price w-50'>
-        <div className='mt-3'><h3>₹ {price}/person</h3></div>
+        <div className='mt-3'><h3><span className='fw-bold'>₹ {price}</span>/person</h3></div>
        <p><i class="fa-solid fa-calendar-days"style={{color:"brown"}}></i> {days}D {days-1}N</p>
      
         <div><p><i class="fa-solid fa-user-group" style={{color:"brown"}}></i> <span className='text-xs'>{maxGroupSize} people</span></p></div>
@@ -171,21 +193,27 @@ return (
   <label htmlFor="upload">
     <input type="file" id='upload' style={{display:'none'}}  required  
      onChange={(e)=>setReviews({...reviews,image:e.target.files[0]})}/>
-    <img src={preview1?preview1:upload} alt=""  />
+    <img src={preview1?preview1:upload} alt="" className='h-[80px]' />
   </label>
 </div>
     </div>
-   <div className='submit'>
+   <div className='submit d-flex justify-between'>
     <button type='submit' onClick={(e)=>handleSubmit(e)} >SUBMIT</button>
+   <button onClick={handleCancel}>CANCEL</button>
    </div>
   </Form>
+</div> 
+ </Col>
+      <Col lg='4' >
+      <BookingPackage tour={tourDetails}/>
+      </Col>
+    </Row>
+<Row>
   
- 
-   
-  
-   
-    {
-      idReview?idReview.map((item)=>(<>
+{
+      idReview?.length>0?idReview.map((item)=>(<>
+        <Col lg={6} md={6} className='mb-2'>
+        
         <ListGroup className=' mt-3 user_reviews p-3'>
         <div className="review_item mt-3">
 
@@ -203,30 +231,30 @@ return (
       <span className='d-flex items-center'></span>
       <p >{item.tourRating} <i className='fa-solid fa-star textColor'></i></p>
         </div>
-        <h6>{item.reviewText}</h6>
+      
       </div>
 
    
    
               </div>
-              
-                 <div className="mt-3">
-                 <img src={`${BASE_URL}/uploads/${item.image}`} className='h-[100px]'></img>
+              <div className="row">
+                <div className="col-md-8">
+                <div className="mt-3">
+                 <img src={`${BASE_URL}/uploads/${item.image}`} className='h-[100px]' width="150px"></img>
                  
-                 </div></ListGroup> </>
+                 </div>
+                 <h6>{item.reviewText}</h6>
+                </div>
+              </div>
+                 </ListGroup> 
+        
+        
+        </Col></>
       )):<p>No reviews found!!</p>
     }
  
-</div> 
+</Row>
 
-
-
-
-      </Col>
-      <Col lg='4'>
-      <BookingPackage tour={tourDetails}/>
-      </Col>
-    </Row>
     <Row><Col><div className="sub"><Subscription/></div></Col></Row>
   </Container>
 </section>

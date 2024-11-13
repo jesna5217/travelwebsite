@@ -1,11 +1,29 @@
 .bookings{
-
+border-radius: 10px;
+transition:.2s ease-in-out;
     border: 1px solid rgb(194, 185, 185);
+    cursor: pointer;
+    }
+    .bookings:hover{
+        background-color: rgb(26, 53, 77);
+        color: white;
     }
     .bookings p{
         margin-bottom: 20px;
+   }
+    .all-bookings{
+        color: rgb(170, 60, 60); 
+        background-color: aliceblue;
+        height: 70px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
     }
-    
+    .all-bookings h1{
+        font-size: 30px!important;
+    }
     @media only screen and (max-width: 600px){
         .about h1{
             margin-bottom: 20px;

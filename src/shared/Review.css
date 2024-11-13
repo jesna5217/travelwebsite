@@ -1,17 +1,12 @@
-
-.item{
-    position: relative;
-    height: 400px;
-    width: 100%;
-    border: 1px solid rgb(215, 205, 205);
-
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+.review-item{
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  padding: 10px;
 }
+
+
 .review_data{
   background:linear-gradient(rgba(.5,.5,.5,.5),rgba(.5,.5,.5,.5));
 width: 100%;
@@ -27,8 +22,8 @@ z-index: 1;
   font-weight: 700;
 margin-bottom: -40px;
 }
-.item .pic{
-  height: 400px;
+.pic{
+  height: 300px;
   width: 100%;
 }
 .heading{
@@ -47,5 +42,17 @@ margin-bottom: -40px;
   margin-bottom: 30px;
   margin-left: 20px;
 }
+.item {
+  height: 300px!important;
+}
 
+}
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  .see{
+    font-size: 45px;
+  }
+  .item {
+    height: 300px!important;
+  }
+   
 }

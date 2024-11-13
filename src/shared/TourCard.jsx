@@ -7,6 +7,8 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import './tourCard.css'
 import { ToastContainer } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+
 function TourCard({tour}) {
   const [token,setToken]=useState("")
   useEffect(()=>{
@@ -17,8 +19,14 @@ function TourCard({tour}) {
   const navigate=useNavigate()
   const handleBooking=()=>{
 if(!token){
-  alert("Please Login");
-  navigate('/login')
+  // alert("Please Login");
+  // navigate('/login')
+  Swal.fire({
+    title: "Please Login",
+    text: "You need to log in to book this tour.",
+    icon: "warning",
+  });
+  
 }
 else{
 navigate(`/booking/${tour.id}`)

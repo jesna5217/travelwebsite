@@ -36,7 +36,7 @@ useEffect(()=>{
     {
        filteredData.length>0?
        filteredData?.map((item)=>(
-        <Col key={item.id} lg={3} md={4} sm={6} xs={6} className="mb-4">
+        <Col key={item.id} lg={3} md={6} sm={6} xs={6} className="mb-4">
         <TourCard tour={item}/>
         </Col>
     )):

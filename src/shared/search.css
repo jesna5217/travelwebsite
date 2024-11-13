@@ -78,3 +78,19 @@ bottom: 10px;
     border-right: none;
 }
     }
+    @media only screen and (min-width: 600px) and (max-width: 900px) {
+       .search_bars{
+        width: 750px!important;
+        margin-left: -130px;
+        position: relative;
+
+        }
+        .search_bars h6{
+            font-size: 14px;
+        }
+        .search_btn{
+           right: 20px;
+           top: 30px;
+           position: absolute;
+        }
+    }

@@ -53,3 +53,28 @@
             font-weight: 600;
         }
   }
+  @media only screen and (min-width: 600px) and (max-width: 900px) {
+    .package_box{
+        height: 300px;
+        
+        padding: 30px;
+      }
+      .inside{
+          height: 20px;
+         
+          height: 100%;
+          padding: 10px
+      }
+      .inside img{
+        height: 220px;
+      }
+     
+      .start div p{
+          font-size: 13px;
+        
+      }
+      .start h6{
+          font-size: 10px;
+        
+      }
+  }

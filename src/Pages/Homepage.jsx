@@ -30,7 +30,7 @@ function Homepage() {
       <div className="row">
         <div className="col-md-5">
             <div  className='content d-flex justify-center items-center flex-column'>
-                <p className="para">  Welcome to   <span className='logo font-bold text-xl' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif"}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></span>, your ultimate travel companion! Whether you're dreaming of a serene beach escape, a thrilling adventure,
+                <p className="para">  Welcome to   <span className='logo home font-bold text-xl' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif"}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></span>, your ultimate travel companion! Whether you're dreaming of a serene beach escape, a thrilling adventure,
                      or a cultural city tour, we've got you covered. DayOut is designed to help you find the best destinations, plan the perfect itinerary,
                       and book your dream trips with ease. Let us guide you to hidden gems, must-see attractions, and unforgettable experiences.
                        Your journey starts here!

@@ -24,7 +24,7 @@ getAllBookings()
   </div>
   <div className="col-md-10 booking_data ">
 
-    <h1 className='fw-bold textColor fs-3 m-5 text-center'>ALL BOOKINGS</h1>
+    <div className='all-bookings'><h1 className='fw-bold  fs-3 m-5 text-center'>ALL BOOKINGS</h1></div>
     <div className="row">
     {
       bookingDetails?

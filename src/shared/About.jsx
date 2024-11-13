@@ -11,7 +11,7 @@ At Day Out, we believe that travel is more than just a destination; it's about t
 Our mission is simple: to make travel accessible, enjoyable, and enriching for everyone. We take pride in our personalized approach, ensuring that each journey reflects your preferences and interests. From discovering hidden gems to exploring popular attractions, we handle all the details so you can focus on making memories.</p>
 
  </div>
-  <div className="col-md-5">
+  <div className="col-md-5 about-img">
     <img src={boys} alt="" /></div> 
    </div>
   )

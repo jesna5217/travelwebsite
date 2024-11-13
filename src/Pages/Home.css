@@ -231,3 +231,90 @@ flex-direction: column;
     }
     
 }
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .sticky img{
+        height: 400px;
+    }
+   .sticky h3{
+    font-size: 50px!important;
+   }
+ .row .content,.home{
+    font-size: 12px !important;
+ }
+.contain{
+    padding: 50px 50px;
+}
+.services{
+    font-size: 13px;
+}
+.des{
+    font-size: 40px;
+}
+.provide{
+    margin: 30px 40px;
+}
+.provide h1{
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(220, 190, 30) ;
+}
+.provide p{
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.heading{
+    font-size: 20px;
+    margin-top: 20px;
+    
+}
+
+
+.about{
+    margin-top: -30px!important;
+   
+}
+.about p{
+    font-size: 13px;
+}
+.about-img img{
+    height: 230px!important;
+}
+
+.choose{
+    font-size: 12px;
+}
+.us img{
+    margin-top: 30px;
+    height: 200px;
+}
+
+
+.subscribe{
+    margin-top: 20px;
+    height: 100px;
+   padding: 10px;
+}
+.subscribe p{
+    font-size: 16px;
+}
+.subscribe input{
+    width: 200px;
+    height: 30px;
+    border: 1px solid  rgb(220, 190, 30);
+    border-radius: 5px;
+    padding-left: 10px;
+font-size: 10px;
+}
+.subs{
+    width: 60px;
+    font-size: 8px;
+    margin-top: 10px;
+    height: 28px;
+
+}
+.subscribe button{
+    width: 80px;
+}
+}

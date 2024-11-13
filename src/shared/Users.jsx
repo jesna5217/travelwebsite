@@ -47,7 +47,7 @@ function Users() {
        <div className="lists" key={user._id}>
        
         <div className="user-detail d-flex justify-between">
-          <img src={user.profile ? `${BASE_URL}/uploads/${user.profile}` :dummy} alt={user.username} />
+          <img src={user.profile ? `${BASE_URL}/uploads/${user.profile}` :dummy} alt="" />
           <h2 className='fw-bold text'>{user.username}</h2>
        
        </div>

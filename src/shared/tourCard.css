@@ -74,4 +74,18 @@ font-size: 12px;
         margin-left: 70px;
       
     }
+
+
+}
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .card{
+        width: 17rem;
+       height: 20em;
+       cursor: pointer;
+      margin-right: 50px!important;
+    
+    }
+    .card_img{
+    height: 13rem;
+    }
 }

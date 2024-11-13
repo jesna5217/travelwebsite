@@ -47,3 +47,31 @@
      visibility: hidden;
       }
     }
+    @media only screen and (min-width: 600px) and (max-width: 900px) {
+     
+    
+    
+       
+        .menu-list i{
+          font-size: 1rem;
+        }
+        .menu-list{
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .menu-list .items{
+         
+         gap: 20px;
+         font-size: 1.1rem;
+         font-weight: 600;
+         padding: 10px;
+         border-radius: 10px;
+         transition: 0.3s ease-in-out;
+         color: #23374d;      
+        }
+        .menu-list .items:hover{
+          background-color: #23374d;
+          color: white;
+        }
+    }

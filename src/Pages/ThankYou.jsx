@@ -9,7 +9,7 @@ import { bookingResponseContext } from '../context/ContextShare';
 function ThankYou() {
 
   const {bookingResponse}=useContext(bookingResponseContext)
-  const options={day:"numeric",month:"numeric",year:"numeric"}
+  const options={day:"numeric",month:"long",year:"numeric"}
  
       const downloadInvoice = () => {
        

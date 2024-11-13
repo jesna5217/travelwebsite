@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import './Account.css'
-import pro from "../assets/profile.webp"
+import pro from "../assets/man2.avif"
 import { getBookingApi, getUserByIdApi, updateProfileApi} from '../services/allApi';
-import Collapse from 'react-bootstrap/Collapse'
+
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { BASE_URL } from '../services/baseurl';
+import nil from "../assets/noorder.avif"
+import Swal from 'sweetalert2';
+
+
 function UserAccount() {
     const [show, setShow] = useState(false);
     const [open, setOpen] = useState(false);
@@ -61,7 +65,12 @@ useEffect(()=>{
     e.preventDefault();
     const{profile}=userD;
    if(!profile){
-    alert("Please select an image")
+    Swal.fire({
+        title: 'Please select an image!',
+        text: 'You need to choose an image to upload.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
    }
    else{
     const reqBody=new FormData();
@@ -73,11 +82,17 @@ useEffect(()=>{
    const res=await updateProfileApi(userId,reqBody,reqHeader)
 if(res.status===200){
     handleClose()
-    alert("Profile Image Uploaded Successfully");
+   
     const uploadedImageUrl = URL.createObjectURL(profile);
     setPreview(uploadedImageUrl);
     const updatedUser = { ...user, profile: uploadedImageUrl }; // or the new profile URL from the response
     setUser(updatedUser);
+     Swal.fire({
+        title: 'Profile Image Uploaded!',
+        text: 'Your profile image has been successfully updated.',
+        icon: 'success',
+        confirmButtonText: 'Cool'
+      });
 
 }
    }
@@ -86,33 +101,69 @@ if(res.status===200){
 
     return (
         <>
-            <div className="container pt-0">
-                <div className="row w-100 d-flex justify-center items-center">
+          
+<div className="container acc-row">
 
-                    <div className="account ">
-                    <div className='text-center'>
+
+    <div className="row ">
+      <div className="col-md-3 account">
+      <div className='logos font-bold text-xl text-center user-logo' style={{ fontFamily: "M PLUS Rounded 1c, sans-serif"}}>day<span style={{color:'rgb(220, 190, 30)'}}>Out.</span></div>
+      <div className='text-center'>
 
 <label htmlFor="upload">
     <input type="file"  style={{ display: 'none' }} required 
   />
-    <img src={preview || (user.profile ? `${BASE_URL}/uploads/${user.profile}` : pro)}  alt="" className='h-[200px]' width="200px" style={{borderRadius:"50%"}}/>
+    <img src={preview || (user.profile ? `${BASE_URL}/uploads/${user.profile}` : pro)}  alt="" className='h-[150px]' width="150px" style={{borderRadius:"50%"}}/>
 </label>
 
 </div>
-                        <div className='p-2 '>
-                            <div className='text-center'>
-                                <h2 className='textColor'>{user.username}</h2>
-                                <p>{user.email}</p>
-                              
 
-         
+<div className='text-center'>
+    <h1>{user.username}</h1>
+    <p>{user.email}</p>
+</div>
+
+<div className="text-cente but" >
 {
     !user.profile &&
-    <button onClick={handleShow} className='btn btn-outline-warning'>IMAGE UPLOAD</button>
+    <button onClick={handleShow} className='btn btn-outline-warning'><span style={{color:"brown"}}><i class="fa-solid fa-camera me-2"></i>IMAGE UPLOAD</span></button>
 }
+</div>
 
 
-                                <Modal show={show} onHide={handleClose}>
+      </div>
+
+
+<div className="col-md-8 order-acc">
+
+<div className='p-3 order-head d-flex  justify-center flex-column'>  <h2 className='fs-3 fw-bold'>MY ORDERS</h2>
+                           
+                           {
+                              bookings?.length>0? bookings.map((item) => (  <div >
+                                   <div className='border p-3 mt-3 booking-details'>
+                                  <div className='order-data'>     <h6 className='fs-5 '>Order Details</h6></div>
+                                       <p><span className='textColor fw-bold'>{item.tourName.toUpperCase()}</span></p>
+                                       <p>Amount Paid :  ₹ {item.price}</p>
+                                       <p>Guests :{item.guestNo}</p>
+                                       <p>Booked for :{(item.bookAt)}</p>
+                                       
+                                      
+                                   </div>    </div>       
+                               )):<div className='d-flex justify-center items-center flex-column mt-2'><img style={{borderRadius:"20px"}} src={nil} alt="" className='h-[300px]' />
+                               <p className='fs-5' style={{color:'brown'}}>Book a holiday!!!</p></div>
+
+                           }
+
+</div>
+
+
+
+</div>
+
+    </div>
+</div>
+
+<Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>UPDATE PROFILE</Modal.Title>
         </Modal.Header>
@@ -145,52 +196,6 @@ if(res.status===200){
           </Button>
         </Modal.Footer>
       </Modal>
-                            </div>
-
-                
-                        </div>
-                 
-
-
-
-
-
-                        
-                        <hr />
-
-                      
-                        <div className='p-3 order-head d-flex  justify-center flex-column'>  <h2 className='fs-4'>My Orders</h2>
-                           
-                                {
-                                   bookings.length>0? bookings.map((item) => (  <div >
-                                        <div className='border p-3 mt-3'>
-                                            <h6>Package :<span className='textColor fw-bold'>{item.tourName}</span></h6>
-                                            <p>Amount Paid : ₹ {item.price}</p>
-                                            <p>Guests :{item.guestNo}</p>
-                                            <p>Date :{(item.bookAt)}</p>
-                                        </div>    </div>       
-                                    )):<p>No Orders</p>
-
-                                }
-
-</div>
-                        
-
-
-
-
-
-
-
-
-              
-                    </div>
-
-                </div>
-
-
-            </div>
-
 
         </>
     )

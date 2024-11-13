@@ -16,6 +16,7 @@ import 'swiper/css';
 
 // import required modules
 import { Pagination ,Autoplay} from 'swiper/modules';
+import { div } from 'framer-motion/client';
 function Review() {
 const [review,setReview]=useState([]);
 
@@ -30,13 +31,53 @@ const getReview=async()=>{
 useEffect(()=>{
   getReview()
 },[])
-
+const options = {
+  loop: true,
+  margin: 10,
+  nav: true,
+  autoplay: true,
+  autoplayTimeout: 3000,
+  responsive: {
+    0: {
+      items: 1
+    },
+    600: {
+      items: 3
+    },
+    1000: {
+      items: 4
+    }
+  }
+};
 
   return (
     <>
-
-
 <div className="row">
+<h1 className='heading ' id='review'>Our Top Reviews</h1>
+<OwlCarousel className="owl-theme" {...options}>
+       {
+        review.map((item)=>(
+          <div>
+            <img height='300px' className='pic' src={`${BASE_URL}/uploads/${item.image}`} alt="" />
+            <div className='review_data d-flex justify-center items-center flex-column'>
+          <div><p>"{item.reviewText}"</p></div>
+          <div>
+            <Rating className='rating' name="disabled" value={item.tourRating} readOnly />
+          </div>
+          <div className='d-flex'>-<h6>{item.userName}</h6></div>
+        </div>
+          </div>
+        ))
+       }
+      
+
+        {/* Add more slides as needed */}
+      </OwlCarousel>
+
+
+</div>
+
+{/* <div className="row">
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
 <div className="col-md-5 review-para" >
     <p className='see textColor'>Lets see what our </p>
@@ -59,7 +100,7 @@ useEffect(()=>{
   {review?.map((item, index) => (
     <SwiperSlide key={index}>
       <div className='item'>
-        <img className='pic' src={`${BASE_URL}/uploads/${item.image}`} alt="" />
+      
         <div className='review_data d-flex justify-center items-center flex-column'>
           <div><p>"{item.reviewText}"</p></div>
           <div>
@@ -75,7 +116,7 @@ useEffect(()=>{
 
   </div>
   
-</div>
+</div> */}
 
 </>
   )

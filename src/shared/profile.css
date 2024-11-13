@@ -106,3 +106,38 @@ border-bottom: 1px solid grey;
         font-size: 12px;
     }
 }
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+   
+        .admin-profile{
+            height:400px;
+        }
+      
+        .profile{
+            padding: 10px!important;
+        }
+        .admin-detail h3{
+            font-size: 20px;
+    
+          }
+          .admin-detail span{
+            font-size: 17px;
+          }
+          .admin-profile img{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+        
+        }
+        .edit{
+            padding: 8px;
+    
+        }
+        .edit button{
+            width: 200px;
+            font-size: 16px;
+            
+        }
+        .edit i{
+            font-size: 14px;
+        }
+    }

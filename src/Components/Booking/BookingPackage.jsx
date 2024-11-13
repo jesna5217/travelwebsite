@@ -4,6 +4,7 @@ import { FormGroup,Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { bookingDataApi } from '../../services/allApi';
 import { bookingResponseContext } from '../../context/ContextShare';
+import Swal from 'sweetalert2';
 function BookingPackage({tour}) {
     const {price,title}=tour
    
@@ -29,7 +30,18 @@ function BookingPackage({tour}) {
         e.preventDefault()
     if(!token){
         alert("Please login!!!")
-    }    
+    } 
+    const today = new Date();
+    const bookingDate = new Date(credentials.bookAt);
+    if (bookingDate < today.setHours(0, 0, 0, 0)) {
+      Swal.fire({
+        title: 'Invalid Date',
+        text: 'Please select a future date for booking.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }   
         try{
             const reqHeader={
                 'Content-Type':'application/json',
@@ -49,17 +61,18 @@ function BookingPackage({tour}) {
                 tourName: title,
                 price: (price * (credentials.guestNo || 1)) + gstAndServiceCharge
               };
-                // console.log (bookingData);
+              
                 setBookingResponse(bookingData)
             const result=await bookingDataApi(bookingData,reqHeader)
     if(result.status===200){
-        console.log(result.data);
-        
-      
-        
-        
-
-
+        Swal.fire({
+            title: 'Booking Confirmed!',
+            text: 'Your booking has been successfully completed.',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            timer: 3000 
+          });
+    
         navigate("/thankyou")
 
        

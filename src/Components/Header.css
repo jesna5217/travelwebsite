@@ -78,3 +78,21 @@ visibility: hidden;
     display: none;
    }
 }
+
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .nav_bar ul li{
+        font-size: 14px;
+        margin-right: 14%;
+    }
+    .log_out{
+        font-size: 14px;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        }
+      .user-name{
+        display: none;
+
+        }
+}
