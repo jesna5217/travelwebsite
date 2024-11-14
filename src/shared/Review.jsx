@@ -3,7 +3,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css'
 import './Review.css'
-import Gallery from './Gallery';
+
 import { getAllReviewApi } from '../services/allApi';
 import Rating from '@mui/material/Rating';
 import { BASE_URL } from '../services/baseurl';
@@ -16,7 +16,7 @@ import 'swiper/css';
 
 // import required modules
 import { Pagination ,Autoplay} from 'swiper/modules';
-import { div } from 'framer-motion/client';
+// import { div } from 'framer-motion/client';
 function Review() {
 const [review,setReview]=useState([]);
 
@@ -52,7 +52,7 @@ const options = {
 
   return (
     <>
-{/* <div className="row">
+<div className="row">
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
 <OwlCarousel className="owl-theme" {...options}>
        {
@@ -72,12 +72,12 @@ const options = {
       
 
         {/* Add more slides as needed */}
-      {/* </OwlCarousel>
+      </OwlCarousel>
 
 
-</div> */}
+</div> 
 
- <div className="row">
+ {/* <div className="row">
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
 <div className="col-md-5 review-para" >
     <p className='see textColor'>Lets see what our </p>
@@ -118,7 +118,7 @@ const options = {
 
   </div>
   
-</div>
+</div> */}
 
 </>
   )
