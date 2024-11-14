@@ -33,6 +33,9 @@ margin-bottom: -40px;
   z-index: 2;
   font-size: 15px!important;
 }
+.item{
+  height: 300px;
+}
 @media only screen and (max-width: 600px)
 {
 .see{
