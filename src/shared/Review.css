@@ -1,4 +1,4 @@
-.review-item{
+/* .review-item{
   height: 300px;
   width: 300px;
   border-radius: 10px;
@@ -22,7 +22,7 @@ z-index: 1;
   font-weight: 700;
 margin-bottom: -40px;
 }
-.pic{
+.review_data .pic{
   height: 300px;
   width: 100%;
 }
@@ -58,4 +58,7 @@ margin-bottom: -40px;
     height: 300px!important;
   }
    
-}
+} */
+ .pic{
+  height: 400px;
+ }

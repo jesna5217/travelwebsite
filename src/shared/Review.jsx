@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
+
+import './Review.css'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css'
-import './Review.css'
-
 import { getAllReviewApi } from '../services/allApi';
 import Rating from '@mui/material/Rating';
 import { BASE_URL } from '../services/baseurl';
@@ -34,45 +34,50 @@ useEffect(()=>{
 const options = {
   loop: true,
   margin: 10,
-  nav: true,
-  autoplay: true,
-  autoplayTimeout: 3000,
+  responsiveClass: true,
+  autoplay: true,              // Enable autoplay
+  autoplayTimeout: 2000,       // Time between transitions (in milliseconds)
+  autoplayHoverPause: true,
   responsive: {
     0: {
-      items: 1
+      items: 2.5,
+      nav: true,
+      loop:false,
+      dots:false
     },
     600: {
-      items: 3
+      items: 4,
+      nav: false,
+      loop:false,
+      dots:false
     },
     1000: {
-      items: 4
-    }
-  }
+      items: 7,
+      nav: true,
+      loop: false,
+      dots:false
+    },
+  },
 };
-
   return (
     <>
 <div className="row">
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
-<OwlCarousel className="owl-theme" {...options}>
-       {
-        review?.map((item)=>(
-          <div>
-            <img height='300px' className='pic' src={`${BASE_URL}/uploads/${item.image}`} alt="" />
-            <div className='review_data d-flex justify-center items-center flex-column'>
-          <div><p>"{item.reviewText}"</p></div>
-          <div>
-            <Rating className='rating' name="disabled" value={item.tourRating} readOnly />
-          </div>
-          <div className='d-flex'>-<h6>{item.userName}</h6></div>
-        </div>
-          </div>
-        ))
-       }
-      
-
-        {/* Add more slides as needed */}
-      </OwlCarousel>
+<OwlCarousel className='owl-theme' loop nav {...options}>
+    
+    {
+    review?.map(item=>(
+      <div className='review_data d-flex justify-center items-center flex-column'>
+        <img className='pic ' src={`${BASE_URL}/uploads/${item.image}`} alt="" />
+       
+      </div>  
+    
+    ))
+    
+    
+    }
+            
+    </OwlCarousel>
 
 
 </div> 
