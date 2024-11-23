@@ -63,51 +63,71 @@ useEffect(()=>{
 },[reviews.image])
 
 
-const handleSubmit=async(e)=>{
-e.preventDefault()
 
-  if(!token){
-    alert("Please login")
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { tourRating, reviewText, image } = reviews;
+  // Validate user authentication
+  if (!token) {
+    return alert("Please login");
   }
 
-else{
-console.log(reviews);
-const{tourRating,reviewText,image}=reviews;
-const reqBody=new FormData();
-reqBody.append("userName",userName);
-reqBody.append("tourRating",tourRating);
-reqBody.append("reviewText",reviewText);
-reqBody.append("image",image);
-reqBody.append("tourId",tourId) 
-reqBody.append("userProfile",userProfile)
+  // Validate review fields
+  if (!reviewText) {
+    return alert("Please write a review before submitting");
+  }
+  if (!reviews.tourRating) {
+    return alert("Please provide a rating before submitting");
+  }
 
-const reqHeader={
-  'Content-Type':'multipart/form-data',
-  'Authorization':`Bearer ${token}`
-}
-const result=await addReviewsApi(reqBody,reqHeader);
-if(result.status===200){
-  Swal.fire({
-    title: 'Thank You!!',
-    text: 'Your review means so much for us !!',
-    icon: 'success',
-    confirmButtonText: 'OK',
-    timer: 3000 
-  });
-  console.log(result.data);
+  try {
+    // Extract fields from reviews
+   
+    const reqBody = new FormData();
+
+    // Append necessary fields
+    reqBody.append("userName", userName);
+    reqBody.append("tourRating", tourRating);
+    reqBody.append("reviewText", reviewText);
+    reqBody.append("image", image);
+    reqBody.append("tourId", tourId);
+ 
+
+    const reqHeader = {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    };
+
+    const result = await addReviewsApi(reqBody, reqHeader);
+
+    if (result.status === 200) {
+      Swal.fire({
+        title: "Thank You!!",
+        text: "Your review means so much for us!!",
+        icon: "success",
+        confirmButtonText: "OK",
+        timer: 3000,
+      });
+
+     
   
-  setReviews({
-    tourRating:"",
-  reviewText:"", 
-  image:""
-  })
- getReviewById(tourId)
-}
-else{
-  alert("Something went wrong")
-}
-}
-}
+      setReviews({
+        tourRating: "",
+        reviewText: "",
+        image: ""
+      })
+setPreview1("")
+      await getReviewById(tourId);
+    } else {
+      alert("Something went wrong while submitting your review.");
+    }
+  } catch (error) {
+    console.error("Error submitting review:", error);
+    alert("An unexpected error occurred. Please try again later.");
+  }
+};
+
+
 const[idReview,setIdReview]=useState([])
 const getReviewById=async(tourId)=>{
   try{
@@ -177,7 +197,7 @@ return (
 
 
 <div className="reviews">
-  <h4 className='fw-bold mb-2'>Reviews (3 review)</h4>
+  <h4 className='fw-bold mb-2'>Post a Review</h4>
   <Form >
     <div className="d-flex items-center gap-3 mb-4 rating" >
  <span>1<i className='fa-solid fa-star'onClick={()=>setReviews({...reviews,tourRating:1})} ></i></span>
@@ -198,7 +218,7 @@ return (
 </div>
     </div>
    <div className='submit d-flex justify-between'>
-    <button type='submit' onClick={(e)=>handleSubmit(e)} >SUBMIT</button>
+    <button type='submit' onClick={handleSubmit} >SUBMIT</button>
    <button onClick={handleCancel}>CANCEL</button>
    </div>
   </Form>

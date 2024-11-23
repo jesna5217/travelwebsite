@@ -139,7 +139,7 @@ const handleClose3=()=>{
         </Modal.Body>
          <Modal.Footer>
          <Button variant="secondary" onClick={handleClose3}>
-         
+         Cancel
          </Button>
          <Button variant="warning" onClick={handleCheck}>
           Enter
