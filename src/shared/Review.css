@@ -1,21 +1,18 @@
-.review-item{
-  height: 300px;
-  width: 300px;
-  border-radius: 10px;
-  border: 1px solid grey;
-  padding: 10px;
-}
-
-
-.review_data{
-  background:linear-gradient(rgba(.5,.5,.5,.5),rgba(.5,.5,.5,.5));
+.review-swiper{
+  height: 300px !important;
 width: 100%;
-  position: absolute;
-bottom: 0px;
-color: white;
-font-weight: 600;
-z-index: 1;
+  border: 1px solid rgb(201, 198, 198);
+  display: flex;
+  padding: 20px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+
 }
+.review-row{
+  padding: 0px 100px;
+}
+
 .see{
   font-family: "Qwitcher Grypen", cursive;
   font-size: 70px;
@@ -33,11 +30,26 @@ margin-bottom: -40px;
   z-index: 2;
   font-size: 15px!important;
 }
-.item{
-  height: 300px;
-}
+
 @media only screen and (max-width: 600px)
 {
+
+  .review-swiper{
+    height: 250px !important;
+  
+    padding: 10px;
+    
+  
+  }
+
+
+  .pic{
+    height: 150px!important;
+    width: 300px;
+  }
+  .review-row{
+    padding: 0px 0px;
+  }
 .see{
   font-size: 45px;
 }
@@ -57,5 +69,12 @@ margin-bottom: -40px;
   .item {
     height: 300px!important;
   }
-   
+  .review-row{
+    padding: 0px 0px;
+    position: relative;
+  }
+  .review-para{
+  margin-top: 100px; }
+
+ 
 }

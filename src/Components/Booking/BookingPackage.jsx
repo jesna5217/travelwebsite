@@ -65,15 +65,9 @@ function BookingPackage({tour}) {
                 setBookingResponse(bookingData)
             const result=await bookingDataApi(bookingData,reqHeader)
     if(result.status===200){
-        Swal.fire({
-            title: 'Booking Confirmed!',
-            text: 'Your booking has been successfully completed.',
-            icon: 'success',
-            confirmButtonText: 'OK',
-            timer: 3000 
-          });
+      
     
-        navigate("/thankyou")
+        navigate("/payment")
 
        
         

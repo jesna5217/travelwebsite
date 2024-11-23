@@ -4,32 +4,34 @@ import "../shared/search.css"
 import { Container ,Col,Row} from 'react-bootstrap'
 import Tours from './Tours'
 import './tour.css'
+
+import {  getAllTour, getSearchTourApi } from '../services/allApi'
 function TourPage() {
-    const[pageCount,setPageCount]=useState(0);
-    const [page,setPage]=useState(0);
-    useEffect(()=>{
-        const pages=Math.ceil(5/4);//changes in be
-        setPageCount(pages)
-    },[])
+   const[tours,setTours]=useState([])
+const [showDisplay,setShowDisplay]=useState(false)
+   const getAllTourItems=async()=>{
+    const res= await getAllTour();
+ 
+    
+    setTours(res.data);
+setShowDisplay(false)
+}
+useEffect(()=>{
+    getAllTourItems()
+},[])
+const [searchDetails,setSearchDetails]=useState({
+  location:"",
+fromDate:"",
+toDate:"",
+  people:""
+})
 
 
-    const [location,setLocation]=useState('');
-   const [fromDate,setFromDate]=useState("");
-   const [toDate,setToDate]=useState("")
-   const[people,setPeople]=useState("")
-   const [numberOfDays,setNumberOfDays]=useState(0);
 
-   const calculateDays = (from, to) => {
-    const startDate = new Date(from);
-    const endDate = new Date(to);
-    const timeDifference = endDate - startDate; // Difference in milliseconds
-    const dayDifference = timeDifference / (1000 * 3600 * 24); // Convert milliseconds to days
-    return dayDifference;
-};
-
-const handleSearch = (e) => {
+const {location,fromDate,toDate,people}=searchDetails;
+const handleSearch =async(e) => {
     e.preventDefault();
-
+setShowDisplay(true)
     if (!location) {
         alert('Please enter a location.');
         return;
@@ -43,13 +45,30 @@ const handleSearch = (e) => {
         return;
     }
 
-    const numberOfDays = calculateDays(fromDate, toDate);
-    setNumberOfDays(numberOfDays)
-    console.log(`Location: ${location}, From: ${fromDate}, To: ${toDate}, People: ${people}`);
-    console.log(`Number of days: ${numberOfDays}`);
+ console.log("search",searchDetails);
+ 
+const res=await getSearchTourApi(searchDetails)
+
+if(res.status===200){
+setTours(res.data);
+setShowDisplay(true)
+setSearchDetails({
+  location:"",
+fromDate:"",
+toDate:"",
+people:""
+})
+
+
+}
 
 };
-
+const handleDisplay=()=>{
+  getAllTourItems();
+  setTours(res.data);
+ 
+ 
+}
   return (
    <>
    <Common title={"All Tours"}/>
@@ -68,9 +87,9 @@ const handleSearch = (e) => {
                   <h6>Location</h6>
                   <input
                     type="text"
-                    placeholder='Place you wish to visit ?'
-                    onChange={(e) => setLocation(e.target.value)}
-                  />
+                    placeholder='Place you wish to visit?'
+                    onChange={(e) =>setSearchDetails({...searchDetails,location:e.target.value})}
+                 value={searchDetails.location} />
                 </div>
               </div>
 
@@ -82,7 +101,9 @@ const handleSearch = (e) => {
                   <input
                     type="date"
                     className='month'
-                    onChange={(e) => setFromDate(e.target.value)}
+                  
+                    onChange={(e) =>setSearchDetails({...searchDetails,fromDate:e.target.value})}
+                 value={searchDetails.fromDate}
                   />
                 </div>
               </div>
@@ -94,7 +115,8 @@ const handleSearch = (e) => {
                   <input
                     type="date"
                     className='month'
-                    onChange={(e) => setToDate(e.target.value)}
+                    onChange={(e) =>setSearchDetails({...searchDetails,toDate:e.target.value})}
+                    value={searchDetails.toDate}
                   />
                 </div>
               </div>
@@ -109,7 +131,8 @@ const handleSearch = (e) => {
                     className='number'
                     placeholder='1'
                     min="1"
-                    onChange={(e) => setPeople(parseInt(e.target.value))}
+                    onChange={(e) => setSearchDetails({...searchDetails,people:e.target.value})}
+                    value={searchDetails.people}
                   />
                 </div>
               </div>
@@ -127,9 +150,15 @@ const handleSearch = (e) => {
        <div className="col-md-2"></div>
 
     </Row>
+
+    {
+      showDisplay &&
+    <div className='text-center mt-3'><button onClick={handleDisplay}  style={{color:"blue"}} className='fw-bold'><u>Display All</u></button></div>
+
+    }
     <Row className='tour-row'>
         <Col>
-        <Tours location={location} numberOfDays={numberOfDays} people={people}/>
+        <Tours tours={tours} />
         </Col>
         <Col lg="12">
       </Col>

@@ -1,0 +1,130 @@
+.blue-head{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(30, 30, 100);
+    border-radius: 10px;
+}
+.cancel p{
+   
+    font-weight: 600;
+   }
+.pay-box{
+    border: 1px solid lightgray;
+    padding-bottom: 20px;
+}
+.box1{
+    padding-left: 20px;
+    background-color: #eee;
+    height: 70px;
+    width: 100%;
+  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.box1 p{
+font-size: 20px;
+font-weight: 700;
+}
+.head-pay{
+    color: rgb(189, 97, 90);
+    font-weight: 500;
+    font-size: 19px;
+}
+.label{
+    font-size: 17px;
+}
+.input-pay{
+   border: 1px solid black;
+   width: 400px;
+   height: 30px;
+   border-radius: 2px;
+}
+.box-3,.box-2{
+    padding-top: 30px;
+    padding-left: 20px;
+    border-bottom: 1px solid lightgray;
+}
+.box-4{
+    padding-top: 30px;
+    padding-left: 20px;  
+}
+.payrow{
+    margin-bottom: 30px;
+}
+.box-3{
+    background-color: #eee;
+}
+.box-4 p{
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+    
+}
+.box-4 span{
+    color: rgb(56, 136, 134);
+}
+.policy h6{
+    font-size: 14px;
+}
+.policy{
+background-color: rgb(214, 214, 214);
+font-family: "Segoe UI";
+padding: 8px 5px;
+width: 120px;
+font-weight: 500;
+}
+.acc{
+background-color:  #0d8a44;
+color: white;
+font-size: 14px;
+cursor: pointer;
+padding: 6px;
+font-weight: 500;
+}
+.invalid{
+    color: red;
+}
+
+@media only screen and (max-width: 600px){
+    .box1{
+        display: block;
+        padding-left: 0;
+        padding-top: 10px;
+        height: 80px;
+    }
+   .box1 p{
+    text-align: center;
+    font-size: 14px;
+   }
+   .head-pay{
+    font-size: 15px
+   }
+   .label{
+    font-size: 14px;
+   
+   }
+   .input-pay{
+    width: 315px;
+
+   }
+   .box-4 p{
+    font-size: 12px;
+   }
+   .policy h6{
+    font-size: 12px;
+   }
+   .policy{
+    padding: 5px ;
+    width: 100px;
+    margin-bottom: 10px;
+   }
+   .acc{
+    margin-top: 20px;
+    width: 95%;
+   }
+   .cancel p{
+    font-size: 15px;
+    
+   }
+}

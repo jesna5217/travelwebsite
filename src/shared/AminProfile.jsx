@@ -82,6 +82,8 @@ if(res.status===200){
     })
 }
 }
+
+
 const handleClose2=()=>{
     setDetail({
         email:"",
@@ -109,7 +111,7 @@ const handleClose3=()=>{
     <div >
        
         <div className="admin-detail">
-            <img src={admin.profile} alt="" />
+            <img src="src/assets/auth1.avif" alt="" />
           <div className='admin-content'>  <h3 className="adminname">{admin.name}</h3></div>
            <div className='admin-content'> <span>{admin.email}</span></div>
            

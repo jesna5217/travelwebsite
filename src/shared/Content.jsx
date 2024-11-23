@@ -3,11 +3,11 @@ import AdminHeader from './AdminHeader'
 import './content.css'
 import Users from './Users'
 import { userResponseContext } from '../context/ContextShare'
-function Content({bookings,price}) {
+function Content({bookings,price,tours}) {
     const{userResponse,setUserResponse}=useContext(userResponseContext)
  const user=userResponse.length
    const order=bookings.length
-    
+    const tour=tours.length;
     const data=[{
         id:0,
         name:"Users",
@@ -25,6 +25,11 @@ function Content({bookings,price}) {
         name:"Revenue",
         number:price,
         icon:"fas fa-coins"
+},{
+    id:3,
+        name:"Tours",
+        number:tour,
+        icon:"fa fa-globe"
 }]
   return (
   <div className="content">

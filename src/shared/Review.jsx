@@ -34,7 +34,7 @@ useEffect(()=>{
   return (
     <>
 
- <div className="row">
+ <div className="row review-row">
 <h1 className='heading ' id='review'>Our Top Reviews</h1>
 <div className="col-md-5 review-para" >
     <p className='see textColor'>Lets see what our </p>
@@ -55,20 +55,35 @@ useEffect(()=>{
   className="mySwiper"
 >
   {review?.map((item, index) => (
-    <SwiperSlide key={index}>
-      <div className='item'>
+   
+     <SwiperSlide key={index} >
+     <div className='review-swiper'>
       
-        <div className='review_data d-flex justify-center items-center flex-column'>
-        <img height='300px' className='pic' src={`${BASE_URL}/uploads/${item.image}`} alt="" />
 
-          <div><p>"{item.reviewText}"</p></div>
-          <div>
-            <Rating className='rating' name="disabled" value={item.tourRating} readOnly />
+
+
+        <div className="container">
+          <div className="row review-column">
+            <div className="col-md-6">
+<img  className='pic h-[250px]' src={`${BASE_URL}/uploads/${item.image}`} alt="" style={{borderRadius:"10px"
+}} />
+            
+            </div>
+            <div className="col-md-6 d-flex justify-center items-center">
+<div className='text-center view'>
+<p>"{item.reviewText}"</p>
+<Rating className='rating' name="disabled" value={item.tourRating} readOnly />
+         <h6>-{item.userName}</h6>
+      
+</div>
+
+            </div>
           </div>
-          <div className='d-flex'>-<h6>{item.userName}</h6></div>
         </div>
       </div>
+      
     </SwiperSlide>
+  
   ))}
       
       </Swiper>
