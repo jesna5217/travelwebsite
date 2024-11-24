@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './profile.css'
 import { adminLoginApi, getAdminApi, updateAdminApi } from '../services/allApi'
-
+import adminProfile from "../assets/auth1.avif";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ModalBody, ModalFooter, ModalHeader } from 'react-bootstrap';
@@ -111,7 +111,7 @@ const handleClose3=()=>{
     <div >
        
         <div className="admin-detail">
-            <img src="src/assets/auth1.avif" alt="" />
+            <img src={adminProfile} alt="" />
           <div className='admin-content'>  <h3 className="adminname">{admin.name}</h3></div>
            <div className='admin-content'> <span>{admin.email}</span></div>
            
