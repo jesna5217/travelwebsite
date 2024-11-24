@@ -1,7 +1,13 @@
 .name{
     border: 1px solid rgb(220, 190, 30); ;
 }
-
+.stars{
+    transition: transform 0.3s ease-in-out; 
+}
+.stars:hover{
+    transform: scale(1.6);
+    color: brown;
+}
 .tour_data{
     overflow-y: hidden;
 }

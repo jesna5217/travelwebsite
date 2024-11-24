@@ -200,11 +200,11 @@ return (
   <h4 className='fw-bold mb-2'>Post a Review</h4>
   <Form >
     <div className="d-flex items-center gap-3 mb-4 rating" >
- <span>1<i className='fa-solid fa-star'onClick={()=>setReviews({...reviews,tourRating:1})} ></i></span>
- <span>2<i className='fa-solid fa-star' onClick={()=>setReviews({...reviews,tourRating:2})} ></i></span>
- <span>3<i className='fa-solid fa-star' onClick={()=>setReviews({...reviews,tourRating:3})} ></i></span>
- <span>4<i className='fa-solid fa-star' onClick={()=>setReviews({...reviews,tourRating:4})} ></i></span>
- <span>5<i className='fa-solid fa-star' onClick={()=>setReviews({...reviews,tourRating:5})} ></i></span>
+ <span>1<i className='fa-solid fa-star stars'onClick={()=>setReviews({...reviews,tourRating:1})} ></i></span>
+ <span>2<i className='fa-solid fa-star stars' onClick={()=>setReviews({...reviews,tourRating:2})} ></i></span>
+ <span>3<i className='fa-solid fa-star stars' onClick={()=>setReviews({...reviews,tourRating:3})} ></i></span>
+ <span>4<i className='fa-solid fa-star stars' onClick={()=>setReviews({...reviews,tourRating:4})} ></i></span>
+ <span>5<i className='fa-solid fa-star stars' onClick={()=>setReviews({...reviews,tourRating:5})} ></i></span>
 
     </div>
     <div className="review_input">

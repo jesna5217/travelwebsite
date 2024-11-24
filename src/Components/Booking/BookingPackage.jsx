@@ -88,7 +88,7 @@ function BookingPackage({tour}) {
         <span>
         <div className='rating d-flex '>
        
-    <p className=' text-xs'><i className='fa-solid fa-star textColor'></i>
+    <p className=' text-xs'>4.5<i className='fa-solid fa-star textColor'></i>
     {/* {avgRating}({reviews.length}) */}
     </p>
         </div> 
