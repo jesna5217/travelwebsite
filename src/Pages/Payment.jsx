@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './payment.css'
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { bookingResponseContext } from '../context/ContextShare';
 
 
 function Payment() {
+
 
 const navigate=useNavigate()
 const[aname,setaName]=useState("");
@@ -61,6 +63,10 @@ if(!aname || !email || !accNo ||!cAccNo || !ifsc){
 }
 
 else{
+
+
+
+
   Swal.fire({
     title: 'Booking Confirmed!',
     text: 'Your booking has been successfully completed.',
@@ -241,10 +247,7 @@ onClick={handlePay}>Pay using your checking account</button>
           <Link to={'/'}>
           <button style={{cursor:"pointer"}}>
             
-            <div className='d-flex items-center cancel'>
-            <i class="fa-solid fa-arrow-left" style={{color:"blue"}} ></i><p style={{color:"blue"}}>
-            CANCEL</p>
-            </div>
+        
             
             </button></Link></div>
     </div>
