@@ -54,6 +54,16 @@ function AdminHeader() {
 
 </MenuItem>
 <MenuItem>
+<Link to={'/userreview'}>
+<div className="items">
+<p >
+  <i className="fa-solid fa-pen"></i> All Reviews
+</p>
+</div>
+</Link>
+
+</MenuItem>
+<MenuItem>
 <div className="items">
 <p lassName='list h-[80px] bg-dark text-light' onClick={handleAdminLogOut}>
   <i className="fa-solid fa-sign-out-alt"></i> Log Out

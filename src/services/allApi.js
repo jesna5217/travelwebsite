@@ -112,3 +112,4 @@ export const updateAdminApi=async(id,reqBody,reqHeader)=>{
 export const getSearchTourApi=async(searchDetails)=>{
     return await commonApi("GET",`${BASE_URL}/tour/searchtour?location=${encodeURIComponent(searchDetails.location)}&fromDate=${encodeURIComponent(searchDetails.fromDate)}&toDate=${encodeURIComponent(searchDetails.toDate)}&people=${encodeURIComponent(searchDetails.people)}`,"","")
 }
+

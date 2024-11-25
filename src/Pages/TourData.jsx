@@ -225,7 +225,7 @@ const [open, setOpen] = useState(false);
           Cancel
         </Button>
         <Button variant="warning" onClick={hanndleAddTour} type='submit' >
-          Save Changes
+          Save 
         </Button>
       </Modal.Footer>
     </Modal>

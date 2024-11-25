@@ -49,6 +49,13 @@ navigate('/')
 </p>
 </div>
 </Link>
+<Link to={'/userreview'}>
+<div className="items">
+<p >
+  <i className="fa-solid fa-pen"></i> All Reviews
+</p>
+</div>
+</Link>
 
 
 

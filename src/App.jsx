@@ -19,10 +19,11 @@ import { ToastContainer} from 'react-toastify';
 import UserAccount from "./Pages/UserAccount"
 import ReviewInput from './shared/ReviewInput'
 import Payment from './Pages/Payment'
+import UserReviews from './Pages/UserReviews'
 
 function App() {
   const location = useLocation();
-  const noHeaderFooterRoutes = ['/login', '/register', '/booking', '/admin', '/panel','/users','/details','/order','/payment'];
+  const noHeaderFooterRoutes = ['/login', '/register','/userreview', '/booking', '/admin', '/panel','/users','/details','/order','/payment'];
 
   const shouldHideHeaderFooter = noHeaderFooterRoutes.includes(location.pathname);
 
@@ -45,7 +46,8 @@ function App() {
         <Route path='/details' element={<TourData/>}/>
     <Route path='/account' element={<UserAccount/>}/>
     <Route path='/review' element={<ReviewInput/>}/>
-    <Route path='/payment' element={<Payment/>}></Route>
+    <Route path='/payment' element={<Payment/>}/>
+    <Route  path='/userreview' element={<UserReviews/>}/>
       </Routes>
     
       {!shouldHideHeaderFooter && <Footer />}
